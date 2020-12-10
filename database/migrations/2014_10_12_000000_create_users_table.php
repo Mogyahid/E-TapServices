@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('city');
             $table->boolean('isCat_AdminConfirm')->default(0);
-            $table->boolean('isAgree')->default(0);
+            $table->boolean('isAgree')->default(true);
             $table->integer('role_id')->default(1);
             $table->rememberToken();
             $table->timestamps();

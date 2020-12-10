@@ -149,10 +149,10 @@
         <livewire:admin-side.components.providers />
     </div>
     <div x-show="page === 'services'" class="w-full">
-        <livewire:admin-side.components.services />
+        <livewire:admin-side.service-page />
     </div>
     <div x-show="page === 'carousel'" class="w-full">
-        <livewire:admin-side.components.carousel />
+        <livewire:admin-side.components.carousel-page />
     </div>
     <div x-show="page === 'user'" class="w-full">
         <livewire:admin-side.components.users />
