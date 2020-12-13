@@ -10,8 +10,8 @@ class ServiceItem extends Model
     use HasFactory;
 
     protected $guarded = [];
-    public function service()
+    public function serviceOffer()
     {
-        return $this->belongsTo(Service::class);
+        return $this->belongsTo(serviceOffer::class);
     }
 }

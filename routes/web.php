@@ -9,13 +9,15 @@ use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
 use Illuminate\Support\Facades\Route;
-// use App\Http\Livewire\CustomerSide\Index;
-// use App\Http\Livewire\CustomerSide\ServiceList;
-// use App\Http\Livewire\CustomerSide\ServiceDetail;
-// use App\Http\Livewire\CustomerSide\UserProfile;
-// use App\Http\Livewire\ProviderSide\Index;
-use App\Http\Livewire\AdminSide\Index;
+use App\Http\Livewire\CustomerSide\Index AS CustomerIndex;
+use App\Http\Livewire\CustomerSide\ServiceList;
+use App\Http\Livewire\CustomerSide\ServiceDetail;
+use App\Http\Livewire\CustomerSide\UserProfile;
+use App\Http\Livewire\ProviderSide\Index AS ProviderIndex;
+use App\Http\Livewire\AdminSide\Index AS AdminIndex;
+use App\Http\Livewire\CategoryAdmin\Index AS CategoryAdminIndex;
 use App\Http\Livewire\Auth\ProviderRegistration;
+use App\Http\Livewire\AppliedProviderFeedback;
 use Illuminate\Support\Facades\Http;
 
 
@@ -30,23 +32,34 @@ use Illuminate\Support\Facades\Http;
 |
 */
 
-Route::get('/', Index::class)->name('home');
+Route::get('/', CustomerIndex::class)->name('home');
 
-// Route::get('TestAPI', function(){
-//     $response = Http::get('https://raw.githubusercontent.com/flores-jacob/philippine-regions-provinces-cities-municipalities-barangays/master/philippine_provinces_cities_municipalities_and_barangays_2017v3.1.json');
-//     return($response->json());
-// });
+Route::get('feedback', AppliedProviderFeedback::class)->name('registrationFeedback');
 
-Route::middleware('guest')->group(function () {
-    Route::get('login', Login::class)
-        ->name('login');
-
-    Route::get('register', Register::class)
-        ->name('register');
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', AdminIndex::class)->name("admin.dashboard");
 });
 
-Route::get('password/reset', Email::class)
-    ->name('password.request');
+
+Route::prefix('provider')->group(function(){
+    Route::get('/dashboard', ProviderIndex::class)->name("provider.dashboard");
+});
+Route::get('apply_provider', ProviderRegistration::class)->name('provider.register');
+
+// Customer Side Here...
+Route::get('services/{category}', ServiceList::class)->name('services');
+Route::get('request', ServiceDetail::class)->name('request');
+
+Route::get('category', CategoryAdminIndex::class)->name("categoryAdmin.dashboard");
+
+
+Route::get('login', Login::class)->name('login');
+
+
+Route::get('register', Register::class)
+->name('register');
+
+Route::get('password/reset', Email::class)->name('password.request');
 
 Route::get('password/reset/{token}', Reset::class)
     ->name('password.reset');
@@ -65,6 +78,5 @@ Route::middleware('auth')->group(function () {
         ->middleware('signed')
         ->name('verification.verify');
 
-    Route::post('logout', LogoutController::class)
-        ->name('logout');
+    Route::post('logout', LogoutController::class)->name('logout');
 });

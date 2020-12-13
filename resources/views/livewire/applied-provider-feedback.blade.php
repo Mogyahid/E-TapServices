@@ -2,6 +2,6 @@
 
 <div class="bg-white bg-opacity-25 text-white py-5 text-center h-screen">
     <div class="bg-gradient-to-r from-blue-600 to-blue-400 text-white py-5 text-center">
-        <h1></h1>
+        <h1>Thank you for trusting us...</h1>
     </div>
 </div>

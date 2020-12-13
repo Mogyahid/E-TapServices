@@ -1,9 +1,9 @@
-<div class="relative h-screen">
+<div class="relative h-screen" x-data="{serviceDialog:@entangle('showServiceDialog') }">
     <div class="px-10 py-7">
         <div >
             <div class="flex justify-between items-center">
                         <h1 class="font-black uppercase text-2xl">Service Management</h1>
-                        <button class="flex items-center focus:outline-none hover:bg-blue-500 border border-blue-500 space-x-2 px-3 py-2 text-blue-500 hover:text-white rounded-md hover:shadow" @click="categoryDialog = !categoryDialog">
+                        <button class="flex items-center focus:outline-none hover:bg-blue-500 border border-blue-500 space-x-2 px-3 py-2 text-blue-500 hover:text-white rounded-md hover:shadow" @click="serviceDialog = !serviceDialog">
                             <span class="material-icons">control_point</span>
                             <span>Add Service</span>
                         </button>
@@ -22,7 +22,7 @@
                         <thead>
                             <tr class="text-left bg-blue-500 text-white">
                                 <th class="py-3 uppercase font-medium pl-3">Image</th>
-                                <th class="py-3 uppercase font-medium">Establishment / Providers</th>
+                                <th class="py-3 uppercase font-medium">Establishment</th>
                                 <th class="py-3 uppercase font-medium">Category</th>
                                 <th class="py-3 uppercase font-medium">Sub-Service</th>
                                 <th class="py-3 uppercase font-medium">Price (Php)</th>
@@ -30,18 +30,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="bg-white border-b">
-                                <td><img src="https://picsum.photos/50/50" class="rounded-md shadow" alt=""></td>
-                                <td>Mogyahid Ansid - Ansid's Laundry Shop</td>
-                                <td>Laundry</td>
-                                <td>Handwash, Washin Machine</td>
-                                <td>500.00</td>
-                                <td>Delete</td>
-                            </tr>
-
-                            <tr class="bg-white border-b">
-                                <td class="py-5 text-center text-red-600 font-medium" colspan="6">No Service Found!</td>
-                            </tr>
+                            @if(count($services) > 0)
+                                @foreach($services as $service)
+                                    <tr class="bg-white border-b hover:bg-gray-100">
+                                        <td><img src="{{ asset('/storage/services/' .$service->image->url) }}" class="object-cover h-15 ml-1 rounded-md w-15 shadow" alt=""></td>
+                                        <td><span class="font-bold">{{$service->provider->establishment}}</span></td>
+                                        <td>{{ $service->category->name }}</td>
+                                        <td>
+                                            @foreach($service->serviceItem as $item)
+                                                {{ $item->service_name }}<br>
+                                            @endforeach
+                                        </td>
+                                        <td class="font-medium">
+                                            @foreach($service->serviceItem as $item)
+                                                {{ number_format($item->price, 2) }}<br>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            <button class="hover:bg-blue-500 hover:text-white text-blue-500 p-1 hover:shadow-md material-icons rounded-md align-middle" wire:click="" @click="">edit</button>
+                                            <button class="hover:bg-red-600 hover:text-white text-red-600 p-1 hover:shadow-md material-icons rounded-md align-middle" wire:click="">delete</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr class="bg-white border-b">
+                                        <td class="py-5 text-center text-red-600 font-medium" colspan="6">No Service Found!</td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -49,12 +64,12 @@
         </div>
     </div>
 
-    <div class="bg-gray-600 absolute top-0 h-full w-full flex justify-center bg-opacity-50">
-        <div class="bg-white rounded-md h-5/6 shadow w-3/5 my-5">
+    <div class="bg-gray-600 absolute top-0 h-full w-full flex justify-center bg-opacity-50" x-show="serviceDialog">
+        <div class="bg-white rounded-md h-5/6 shadow w-3/5 my-5" x-show="serviceDialog">
             <div class="bg-blue-500 text-center py-3 text-white uppercase font-medium rounded-tr-md rounded-tl-md flex justify-between items-center px-5">
                 <span></span>
                 <span>Add Services</span>
-                <button class="pt-2 focus:outline-none">
+                <button class="pt-2 focus:outline-none" @click="serviceDialog = !serviceDialog">
                     <span class="material-icons">close</span>
                 </button>
             </div>

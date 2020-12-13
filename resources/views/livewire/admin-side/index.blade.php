@@ -53,9 +53,12 @@
                     </button>
                 </li>
                 <li class="hover:text-gray-300p">
-                    <button  class=" items-center focus:outline-none">
+                    <a href="{{ url('/logout') }}" class="flex items-center" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  class=" items-center focus:outline-none">
                         <span class="material-icons" align-middle>exit_to_app</span> 
-                    </button>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </div>
@@ -122,10 +125,13 @@
                     </button>
                 </li>
                 <li class="hover:text-gray-300 px-3 py-3">
-                    <button  class="flex space-x-3 items-center focus:outline-none">
+                    <a href="{{ url('/logout') }}" class="flex items-center" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  class="flex space-x-3 items-center focus:outline-none">
                         <span class="material-icons">exit_to_app</span> 
                         <span>Logout</span>
-                    </button>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </div>
@@ -152,7 +158,7 @@
         <livewire:admin-side.service-page />
     </div>
     <div x-show="page === 'carousel'" class="w-full">
-        <livewire:admin-side.components.carousel-page />
+        <livewire:admin-side.components.carousel />
     </div>
     <div x-show="page === 'user'" class="w-full">
         <livewire:admin-side.components.users />

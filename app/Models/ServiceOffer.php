@@ -11,14 +11,18 @@ class ServiceOffer extends Model
 
     protected $guarded = [];
 
-    public function serviceoffer()
+    public function serviceItem()
     {
-        return $this->hasMany(ServiceItem::class);
+        return $this->hasMany(ServiceItem::class, "service_id", "id");
     }
 
     public function provider()
     {
-        return $this->hasOne(Provider::class);
+        return $this->belongsTo(Provider::class);
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
     
     public function image()

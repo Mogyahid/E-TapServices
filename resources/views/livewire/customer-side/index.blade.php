@@ -1,5 +1,7 @@
 @section('title', 'E-tap Services - Let others discover you.')
-<div>
+<div class="relative">
+    <!-- Top navbar -->
+    <livewire:customer-side.components.top-navbar />
     <!-- Navbar section here -->
     <livewire:customer-side.components.navbar />
     <!-- Carousel Section -->
@@ -18,10 +20,12 @@
             <!-- Items -->
             @foreach($categories as $category)
             <div class="border hover:bg-white transform transition hover:-translate-y-2 hover:shadow-md  rounded-md">
-                <img src="{{ asset('/storage/categories/' . $category->image->url) }}" class="object-cover w-full rounded-tr-md rounded-tl-md" alt="">
-                <div class="py-2">
-                    <p class="text-gray-400 py-1 px-2">345 Providers</p>
-                </div>
+                <a href="{{ route('services', ['category' => $category->id]) }}">
+                    <img src="{{ asset('/storage/categories/' . $category->image->url) }}" class="object-cover w-full rounded-tr-md rounded-tl-md" alt="">
+                    <div class="py-2">
+                        <p class="text-gray-400 py-1 px-2">345 Providers</p>
+                    </div>
+                </a>
             </div>
             @endforeach
         </div>

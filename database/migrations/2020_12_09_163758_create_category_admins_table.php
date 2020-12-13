@@ -15,7 +15,7 @@ class CreateCategoryAdminsTable extends Migration
     {
         Schema::create('category_admins', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("user_id")->nullable();
             $table->biginteger('category_id')->nullable();
             $table->string('admin_fullname');
             $table->timestamps();

@@ -21,18 +21,59 @@ class Login extends Component
         'email' => ['required', 'email'],
         'password' => ['required'],
     ];
-
+    
+    // public $redirectTo;
+    // public function redirectTo()
+    // {
+    //     switch (Auth::user()->role_id) {
+    //         case 1:
+    //             return '/admin/dashboard';
+    //             // return redirect()->route('admin.dashboard');
+    //             // return $this->redirectTo("admin.dashboard");
+    //             break;
+    //         case 2:
+    //             return '/categoryAdmin/dashboard';
+    //             break;
+    //         case 3:
+    //             return '/provider/dashboard';
+    //             break;
+    //         case 4:
+    //             return '/client/home';
+    //             break;
+            
+    //         default:
+    //             return redirect()->route('login');
+    //             break;
+    //     }
+    // }
+    
     public function authenticate()
     {
         $this->validate();
 
         if (!Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
             $this->addError('email', trans('auth.failed'));
-
-            return;
         }
-
-        return redirect()->intended(route('home'));
+        else{
+            switch (Auth::user()->role_id) {
+                case 1:
+                    return redirect()->route('admin.dashboard');
+                    break;
+                case 2:
+                    return redirect()->route('categoryAdmin.dashboard');
+                    break;
+                case 3:
+                    return redirect()->route('provider.dashboard');
+                    break;
+                case 4:
+                    return redirect()->route('home');
+                    break;
+                
+                default:
+                    return redirect()->route('login');
+                    break;
+            }
+        }
     }
 
     public function render()

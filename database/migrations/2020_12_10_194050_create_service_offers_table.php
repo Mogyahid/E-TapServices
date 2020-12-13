@@ -15,9 +15,12 @@ class CreateServiceOffersTable extends Migration
     {
         Schema::create('service_offers', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
             $table->unsignedBigInteger("category_id");
             $table->unsignedBigInteger("provider_id");
             $table->string("service_description");
+            $table->integer("no_requests");
+            $table->integer("rate_value");
             $table->timestamps();
         });
     }

@@ -9,6 +9,7 @@ class Provider extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     // public function services()
     // {
     //     return $this->belongsToMany(Service::class);
@@ -18,4 +19,8 @@ class Provider extends Model
     {
         return $this->hasMany(Service::class);
     }
+
+    // public function category(){
+    //     return $this->hasMany(Category::class);
+    // }
 }

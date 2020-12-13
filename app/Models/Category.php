@@ -15,4 +15,8 @@ class Category extends Model
     {
         return $this->morphOne('App\Models\Image', 'imageable');
     }
+
+    public function service(){
+        return $this->hasMany(ServiceOffer::class);
+    }
 }

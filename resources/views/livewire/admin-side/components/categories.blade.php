@@ -2,8 +2,7 @@
     x-data="{ 
         categoryDialog:@entangle('showCategoryModal'), 
         editCategory:@entangle('showEditCategory'), 
-        assignAdminModal:@entangle('showAssignAdmin') 
-    }">
+        assignAdminModal:@entangle('showAssignAdmin') }">
         <div class="px-10 py-7">
             <div class="flex justify-between items-center">
                     <h1 class="font-black uppercase text-2xl">Category Management</h1>

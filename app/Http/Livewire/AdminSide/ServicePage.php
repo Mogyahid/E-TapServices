@@ -20,6 +20,11 @@ class ServicePage extends Component
     #For clearing the input file value
     public $iteration;
 
+    public $showServiceDialog = false;
+    public $showEditService = false;
+    public $ifForEdit;
+
+
     public function mount()
     {
         $this->servicesOffer = [
@@ -32,15 +37,18 @@ class ServicePage extends Component
         return view('livewire.admin-side.service-page', [
             "establishments" => Provider::all(),
             "categories" => Category::all(),
+            'services' => ServiceOffer::all(),
         ]);
     }
 
+    //Removing the service items
     public function removeServiceOffer($index)
     {
         unset($this->servicesOffer[$index]);
         $this->servicesOffer = array_values($this->servicesOffer);
     }
 
+    // Add service items
     public function addServiceOffer()
     {
         $this->servicesOffer[] = ['name' => '', 'price' => ''];
@@ -67,10 +75,6 @@ class ServicePage extends Component
                 'imageable_id' => $service_id,
                 'imageable_type' =>  ServiceOffer::class,
             ]);
-            $this->iteration = rand();
-            $this->establishment = "";
-            $this->categoryID = "";
-            $this->description = "";
         }
 
         foreach ($this->servicesOffer as $key => $service) {
@@ -80,6 +84,27 @@ class ServicePage extends Component
                 'price' => $service['price']
             ]);
         }
+
+        $this->showServiceDialog = false;
+        $this->iteration = rand();
+        $this->establishment = "";
+        $this->categoryID = "";
+        $this->description = "";
     }
 
+    // To Do
+    public function deleteService(ServiceOffer $service)
+    {
+        # Getting the image by comparing the pass id to its id
+        $images = DB::table('images')->select('url')->where('imageable_id', $category->id)->get();
+
+        foreach($images as $image_url){
+            $this->pastDeletedImage = $image_url->url; # Store editting image name
+        }
+        $deleted = $category->delete();
+
+        if($deleted){
+            Storage::delete('public/categories/'.$this->pastDeletedImage);
+        }
+    }
 }
