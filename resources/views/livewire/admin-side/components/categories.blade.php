@@ -2,7 +2,8 @@
     x-data="{ 
         categoryDialog:@entangle('showCategoryModal'), 
         editCategory:@entangle('showEditCategory'), 
-        assignAdminModal:@entangle('showAssignAdmin') }">
+        assignAdminModal:@entangle('showAssignAdmin'),
+        isExists:@entangle('existing') }">
         <div class="px-10 py-7">
             <div class="flex justify-between items-center">
                     <h1 class="font-black uppercase text-2xl">Category Management</h1>
@@ -95,25 +96,14 @@
                         </div>
                         <div class="flex flex-col space-y-2 my-2">
                             <label for="" class="font-bold uppercase">Category Name</label>
-                            <input type="text" class="border rounded px-2 py-2 border-red-500" placeholder="Enter category name" wire:model="category_name" required autofocus>
-                            @error('category_name') <span class="error">{{ $message }}</span> @enderror
+                            <input type="text" class="border rounded px-2 py-2 focus:border-blue-500" placeholder="Enter category name" wire:model.lazy="category_name" required autofocus>
+                            <span class="bg-red-500 w-full bg-opacity-25 px-3 py-2 font-medium border-l-1 border-red-600" x-show="isExists">Category name already added in the table. Please insert new category only!</span>
                         </div>
-                        @if (session()->has('message'))
-                            <div class="mb-3 flex w-full alert alert-success">
-                                <span class="bg-red-500 w-full bg-opacity-25 px-3 py-2 font-medium border-l-1 border-red-600">{{ session('message') }}</span>
-                            </div>
-                            <div>
+                            <div class="mt-5">
                                 <button class="bg-blue-500 text-white py-3 float-right px-3 rounded hover:shadow uppercase font-medium">Save Category 
                                     <div wire:loading wire:target="saveCategory"><i class="fas fa-spinner fa-pulse"></i></div>
                                 </button>
                             </div>
-                        @else
-                            <div class="mt-10">
-                                <button class="bg-blue-500 text-white py-3 float-right px-3 rounded hover:shadow uppercase font-medium">Save Category 
-                                    <div wire:loading wire:target="saveCategory"><i class="fas fa-spinner fa-pulse"></i></div>
-                                </button>
-                            </div>
-                        @endif
                     </form>
                 </div>
             </div>

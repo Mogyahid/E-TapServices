@@ -52,7 +52,7 @@
                         <span class="material-icons align-middle">settings</span> 
                     </button>
                 </li>
-                <li class="hover:text-gray-300p">
+                <li class="hover:text-gray-300">
                     <a href="{{ url('/logout') }}" class="flex items-center" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  class=" items-center focus:outline-none">
                         <span class="material-icons" align-middle>exit_to_app</span> 
                     </a>
@@ -129,11 +129,11 @@
                         <span class="material-icons">exit_to_app</span> 
                         <span>Logout</span>
                     </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
                 </li>
             </ul>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
         </div>
     </div>
 

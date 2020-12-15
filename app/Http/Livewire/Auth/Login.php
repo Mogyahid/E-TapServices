@@ -22,31 +22,6 @@ class Login extends Component
         'password' => ['required'],
     ];
     
-    // public $redirectTo;
-    // public function redirectTo()
-    // {
-    //     switch (Auth::user()->role_id) {
-    //         case 1:
-    //             return '/admin/dashboard';
-    //             // return redirect()->route('admin.dashboard');
-    //             // return $this->redirectTo("admin.dashboard");
-    //             break;
-    //         case 2:
-    //             return '/categoryAdmin/dashboard';
-    //             break;
-    //         case 3:
-    //             return '/provider/dashboard';
-    //             break;
-    //         case 4:
-    //             return '/client/home';
-    //             break;
-            
-    //         default:
-    //             return redirect()->route('login');
-    //             break;
-    //     }
-    // }
-    
     public function authenticate()
     {
         $this->validate();

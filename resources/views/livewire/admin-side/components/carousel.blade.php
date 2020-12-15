@@ -1,5 +1,5 @@
 <div>
-    <div class="flex-1 px-10 py-7">
+    <!-- <div class="flex-1 px-10 py-7">
         <h1 class="font-black uppercase text-2xl">Advertisement Management</h1>
         <h1 class="font-black text-gray-500 uppercase mt-5 text-xl mb-2">Carousel Preview</h1>
 
@@ -88,5 +88,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
+
+    Test
 </div>

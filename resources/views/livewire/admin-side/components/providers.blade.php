@@ -20,17 +20,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach($pending_providers as $pending)
                         <tr class="bg-white hover:bg-gray-100 border-b">
                             <td class="font-medium pl-2 py-3 ">
-                                <span class="uppercase font-bold">Ansid, Mogyahid</span>
-                                <span class="text-gray-500">- 09357788005</span>
+                                <span class="uppercase font-bold">{{ $pending->lastname }}, {{ $pending->firstname}}</span>
+                                <span class="text-gray-500">- {{ $pending->contact_no }}</span>
                             </td>
                             <td class="py-3 font-medium">
-                                Block 3, Purok 9, Tacurong City
+                                {{ $pending->address->street }}, {{ $pending->address->barangay }}, {{ $pending->address->city }}, {{ $pending->address->province }}
                             </td>
-                            <td class="py-3 uppercase font-medium">Ansid's Laundry Shop</td>
+                            <td class="py-3 uppercase font-medium">{{ $pending->provider->establishment }}</td>
                             <td class="py-3 uppercase font-medium flex space-x-2">
-                                <button class="hover:text-white text-blue-500 hover:bg-blue-500 p-2 rounded-md hover:shadow-md flex items-center space-x-2">
+                                <button class="hover:text-white text-blue-500 hover:bg-blue-500 p-2 rounded-md hover:shadow-md flex items-center space-x-2" wire:click="approve({{ $pending->id }})">
                                     <span class="material-icons text-sm">thumb_up</span>
                                     <span>Approve</span>
                                 </button>
@@ -40,7 +41,7 @@
                                 </button>
                             </td>
                         </tr>
-
+                    @endforeach
                         <tr class="bg-white border-b">
                             <td class="py-3 text-center text-red-600 font-medium" colspan="4">No Providers Found!</td>
                         </tr>
@@ -59,7 +60,7 @@
                         keyboard_arrow_up
                     </button>
                 </div>
-                    <div class="bg-gray-200 p-2" x-show="showApprovedProviders">
+                    <div class="bg-gray-200 p-2" x-show="!showApprovedProviders">
                         <table class="w-full border">
                             <thead>
                                 <tr class="text-left bg-gray-400 text-white">
@@ -70,23 +71,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="bg-white hover:bg-gray-100 border-b">
-                                    <td class="font-medium pl-2 py-3 ">
-                                        <span class="uppercase font-bold">Ansid, Mogyahid</span>
-                                        <span class="text-gray-500">- 09357788005</span>
-                                    </td>
-                                    <td class="py-3 font-medium">
-                                        Block 3, Purok 9, Tacurong City
-                                    </td>
-                                    <td class="py-3 uppercase font-medium">Ansid's Laundry Shop</td>
-                                    <td class="py-3 uppercase font-medium flex space-x-2">
-                                        Dec. 13, 2020
-                                    </td>
-                                </tr>
-
+                            @if(count($approved_providers) > 0)
+                                @foreach($approved_providers as $approved)
+                                    <tr class="bg-white hover:bg-gray-100 border-b">
+                                        <td class="font-medium pl-2 py-3 ">
+                                            <span class="uppercase font-bold">{{ $approved->lastname }}, {{ $approved->firstname}}</span>
+                                            <span class="text-gray-500">- {{ $approved->contact_no }}</span>
+                                        </td>
+                                        <td class="py-3 font-medium">
+                                            {{ $approved->address->street }}, {{ $approved->address->barangay }}, {{ $approved->address->city }}, {{ $approved->address->province }}
+                                        </td>
+                                        <td class="py-3 uppercase font-medium">{{ $approved->provider->establishment }}</td>
+                                        <td class="py-3 uppercase font-medium flex space-x-2">
+                                            {{ now()->toFormattedDateString($approved->created_at) }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
                                 <tr class="bg-white border-b">
-                                    <td class="py-3 text-center text-red-600 font-medium" colspan="4">No Providers Found!</td>
+                                    <td class="py-3 text-center text-red-600 font-medium" colspan="4">No Provider Found!</td>
                                 </tr>
+                            @endif
                             </tbody>
                         </table>
                     </div>

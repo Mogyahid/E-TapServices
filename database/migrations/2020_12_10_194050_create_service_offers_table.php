@@ -18,9 +18,9 @@ class CreateServiceOffersTable extends Migration
             $table->string("name");
             $table->unsignedBigInteger("category_id");
             $table->unsignedBigInteger("provider_id");
-            $table->string("service_description");
-            $table->integer("no_requests");
-            $table->integer("rate_value");
+            $table->text("service_description");
+            $table->integer("no_requests")->default(0)->nullable();
+            $table->integer("rate_value")->default(0)->nullable();
             $table->timestamps();
         });
     }

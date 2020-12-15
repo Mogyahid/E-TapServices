@@ -1,8 +1,8 @@
 <div class=" bg-footer text-white border-t-2 border-blue-500">
-    <div class="px-15 py-10 grid grid-cols-3 gap-4">
+    <div class="px-15 pt-10 grid grid-cols-3 gap-4">
         <div>
             <!-- Logo -->
-            <img src="https://picsum.photos/70/70" alt="Logo">
+            <img src="{{ asset('logo/final-logo.jpg') }}" alt="Logo" class="w-64">
             <!-- Company Description -->
             <p class="my-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
                 Vel consequatur odit fuga quam natus, fugiat aut! Exercitationem veritatis iusto iste sed?

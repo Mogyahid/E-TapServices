@@ -61,16 +61,17 @@ class ProviderRegistration extends Component
 
             $user = User::create([
                 'firstname' => $this->firstname,
+                'lastname' => $this->lastname,
                 'contact_no' => $this->contactNo,
                 'email' => $this->email,
                 'city' => $this->city_value,
                 'password' => Hash::make($this->password),
             ]);
 
-            $user->update(['role_id' => 3]);
-    
+            
             $user_id = $user->id;
-        
+            User::where('id', $user_id)->update(["role_id" => 3]);
+            
             $provider = Provider::create([
                 'user_id' => $user_id, //Last inserted id in the user table
                 'middlename' => $this->middlename,

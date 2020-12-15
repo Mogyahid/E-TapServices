@@ -5,10 +5,10 @@
     <!-- Navbar section here -->
     <livewire:customer-side.components.navbar />
     <!-- Carousel Section -->
-    <livewire:customer-side.components.carousel />
+    <!-- <livewire:customer-side.components.carousel /> -->
 
     <!-- Main content -->
-    <div class="my-5">
+    <div class="mt-5">
         <div class="text-center my-7">
             <h1 class="uppercase font-black text-5xl">Popular Categories</h1>
             <!-- <hr class="bg-blue-500 w-32 h-1 self-center"> -->
@@ -23,7 +23,7 @@
                 <a href="{{ route('services', ['category' => $category->id]) }}">
                     <img src="{{ asset('/storage/categories/' . $category->image->url) }}" class="object-cover w-full rounded-tr-md rounded-tl-md" alt="">
                     <div class="py-2">
-                        <p class="text-gray-400 py-1 px-2">345 Providers</p>
+                        <p class="text-gray-400 py-1 px-2 font-medium">({{ $category->no_services }}) {{ Str::plural('Service', $category->no_services) }} Registered</p>
                     </div>
                 </a>
             </div>

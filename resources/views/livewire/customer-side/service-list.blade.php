@@ -15,36 +15,42 @@
             </div>
 
             <!-- Categories -->
-            <div class="grid grid-cols-5 gap-4 px-15 my-5">
+            @if(count($serviceOffers) > 0)
+                <div class="grid grid-cols-5 gap-4 px-15 my-5">
                 <!-- Items -->  
-                @foreach($serviceOffers as $service)
-                    <div class="border hover:bg-white transform transition hover:shadow-md  rounded-md">
-                        <img src="https://picsum.photos/200/200" class="object-cover w-full rounded-tr-md rounded-tl-md" alt="">
-                        <div class="py-2">
-                            <div class="text-center">
-                                <h1 class="font-bold text-xl">{{ $service->name }}</h1>
-                                <p class="text-gray-700 px-2">J hauling</p>
-                            </div>
-
-                            <div class="text-left px-3 mt-5 mb-3 flex items-center justify-between">
-                                <div class="leading-3">
-                                    <!-- Stars -->
-                                    <div>
-                                        <?php
-                                            for ($x = 1; $x <= 5; $x++) {
-                                            echo "<span class='material-icons md-18 text-blue-500'>star</span>";
-                                            }
-                                        ?>
-                                    </div>
-                                    <!-- Requests made -->
-                                    <p class="text-gray-400 py-1 px-2 text-sm">132 Requests</p>
+                    @foreach($serviceOffers as $service)
+                        <div class="border hover:bg-white transform transition hover:shadow-md  rounded-md">
+                            <img src="{{ asset('/storage/services/' . $service->image->url) }}" class="object-cover w-full rounded-tr-md rounded-tl-md" alt="">
+                            <div class="py-2">
+                                <div class="text-center">
+                                    <h1 class="font-bold text-xl">{{ $service->name }}</h1>
+                                    <p class="text-gray-700 px-2">{{ $service->provider->establishment }}</p>
                                 </div>
-                                <a href="{{ route('request', ['service' => $service->id]) }}" class="bg-blue-500 py-2 hover:shadow px-5 rounded-full text-white">Request Now</a>
+
+                                <div class="text-left px-3 mt-5 mb-3 flex items-center justify-between">
+                                    <div class="leading-3">
+                                        <!-- Stars -->
+                                        <div>
+                                            <?php
+                                                for ($x = 1; $x <= 5; $x++) {
+                                                echo "<span class='material-icons md-18 text-gray-300'>star</span>";
+                                                }
+                                            ?>
+                                        </div>
+                                        <!-- Requests made -->
+                                        <p class="text-gray-400 py-1 px-2 text-sm">{{$service->no_requests}} {{ Str::plural('Request', $service->no_requests) }}</p>
+                                    </div>,
+                                    <a href="{{ route('requestservice', ['reqservice' => $service->id]) }}" class="bg-blue-500 py-2 hover:shadow px-5 rounded-full text-white">Request Now</a>
+                                </div>
                             </div>
-                        </div>
-                    </div> 
+                        </div> 
                     @endforeach
-            </div>
+                </div>
+            @else
+                <div class="h-2/5 w-full text-center align-middle flex items-center justify-center">
+                        <h1 class="font-medium text-2xl uppercase text-center text-gray-400">No Services Found in this category!</h1>
+                </div>
+            @endif
         </div>
 
 

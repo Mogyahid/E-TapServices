@@ -22,6 +22,7 @@ class Categories extends Component
     public $showCategoryModal = false;
     public $showEditCategory = false;
     public $showAssignAdmin = false;
+    public $existing = false;
 
     #For clearing the input file value
     public $iteration;
@@ -66,19 +67,19 @@ class Categories extends Component
 
         # If both image and name exists
         if($isExists){
-            session()->flash('message', 'Category already exists. Please insert new category only!');
+            $this->existing = true;
             $this->iteration = rand();
         }
 
         #If only name
         else if($isExists){
-            session()->flash('message', 'Category name already exists. Please insert new category only!');
+            $this->existing = true;
             $this->iteration = rand();
         }
 
         #if only image 
         else if($categoryImageExists){
-            session()->flash('message', 'Category image name already exists. Please insert new category only!');
+            $this->existing = true;
             $this->iteration = rand();
         }
         else{

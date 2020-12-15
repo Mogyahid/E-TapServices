@@ -22,13 +22,13 @@
 
     <div x-show="categoryHover"  x-on:mouseleave="categoryHover = false" @click.away="categoryHover = false">
         @if(count($categories) > 0)
-            <div class="bg-white border-t-4 border-blue-500 shadow-md w-full absolute top-17 p-7 flex space-x-5">
+            <div class="bg-white border-t-4 border-blue-500 shadow-md w-full absolute top-17 p-7 flex flex-wrap space-x-5 rounded-md">
                 @foreach($categories as $category)
-                    <a href="" class="flex space-x-1 flex flex-col hover:shadow">
-                        <img src="{{ asset('/storage/categories/' . $category->image->url) }}" class="w-36 h-36" alt="">
+                    <a href="{{ route('services', ['category' => $category->id]) }}" class="flex space-x-1 flex flex-col hover:shadow">
+                        <img src="{{ asset('/storage/categories/' . $category->image->url) }}" class="rounded-tr-md rounded-tl-md w-36 h-36" alt="">
                         <div>
-                            <h1 class="font-medium">Service name</h1>
-                            <p class="text-xs text-gray-500">173 Services</p>
+                            <h1 class="font-medium">{{ $category->name }}</h1>
+                            <p class="text-xs text-gray-500">({{ $category->no_services }}) {{ Str::plural('Service', $category->no_services) }}</p>
                         </div>
                     </a>
                 @endforeach

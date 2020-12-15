@@ -154,6 +154,28 @@
                 // i.e. `autoPlay: 1000` will advance every 1 second
             });
 
+            //TotalAmount Calculation
+            document.querySelectorAll('.service_name').forEach((element,index) =>{
+                element.addEventListener("change", function(){
+                    document.querySelectorAll('.price')[index].checked = this.checked;
+                });
+            });
+
+            $(function(){
+                var dtToday = new Date();
+                
+                var month = dtToday.getMonth() + 1;
+                var day = dtToday.getDate();
+                var year = dtToday.getFullYear();
+                if(month < 10)
+                    month = '0' + month.toString();
+                if(day < 10)
+                    day = '0' + day.toString();
+                
+                var maxDate = year + '-' + month + '-' + day;
+                $('#deliveryDate').attr('min', maxDate);
+            });
+
         </script>
     </body>
 </html>

@@ -93,14 +93,20 @@
                         </div>
                     </div>
                     
-                    <div class="mt-3">
-                        <label for="" class="font-medium">Choose Category</label>
-                        <select name="" id="" class="border px-2 py-3 rounded-md w-full" wire:model="categoryID">
-                                <option selected>Please select category</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
-                                @endforeach
-                        </select>
+                    <div class="grid grid-cols-2 gap-3 mt-3">
+                        <div>
+                            <label for="" class="font-medium">Choose Category</label>
+                            <select name="" id="" class="border px-2 py-3 rounded-md w-full" wire:model="categoryID">
+                                    <option selected>Please select category</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="" class="font-medium">Service Title / Name</label>
+                            <input wire:model.lazy="service_name" type="text" class="border px-2 py-3 rounded-tl-md rounded-bl-md flex-1 focus:outline-none" placeholder="Enter service title or name"/>
+                        </div>
                     </div>
 
                     <div class="my-3 bg-gray-100 rounded px-3 flex flex-col h-64 overflow-y-auto relative">

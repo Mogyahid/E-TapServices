@@ -7,13 +7,14 @@
 
             <div class="flex items-center space-x-5">
                 <!-- Search here -->
+
                 <!-- Notification -->
-                <button class="relative" @click="isNotificationOpen = !isNotificationOpen">
-                    <span class="bg-red-600 text-white absolute right-5 rounded-full text-xs w-5 h-5 p-1">1</span>
-                    <span class="material-icons text-gray-600">notifications</span>
-                </button>
                 <!-- My account -->
                 @auth
+                    <button class="relative" @click="isNotificationOpen = !isNotificationOpen">
+                        <span class="bg-red-600 text-white absolute right-5 rounded-full text-xs w-5 h-5 p-1">0</span>
+                        <span class="material-icons text-gray-600">notifications</span>
+                    </button>
                     <button class="bg-blue-500 uppercase text-white py-3 px-7 flex items-center font-bold cursor-pointer" @click="isAccountOpen = !isAccountOpen">
                         <span>My Account</span>
                         <span class="material-icons">arrow_drop_down</span>

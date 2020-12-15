@@ -34,6 +34,12 @@ use Illuminate\Support\Facades\Http;
 
 Route::get('/', CustomerIndex::class)->name('home');
 
+// Customer Side Here...
+Route::get('services/{category}', ServiceList::class)->name('services');
+
+Route::get('requestservice/{reqservice}', ServiceDetail::class)->name('requestservice');
+
+
 Route::get('feedback', AppliedProviderFeedback::class)->name('registrationFeedback');
 
 Route::prefix('admin')->group(function () {
@@ -45,10 +51,6 @@ Route::prefix('provider')->group(function(){
     Route::get('/dashboard', ProviderIndex::class)->name("provider.dashboard");
 });
 Route::get('apply_provider', ProviderRegistration::class)->name('provider.register');
-
-// Customer Side Here...
-Route::get('services/{category}', ServiceList::class)->name('services');
-Route::get('request', ServiceDetail::class)->name('request');
 
 Route::get('category', CategoryAdminIndex::class)->name("categoryAdmin.dashboard");
 

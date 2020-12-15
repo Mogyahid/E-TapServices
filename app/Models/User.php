@@ -44,4 +44,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function address()
+    {
+        return $this->hasOne(Address::class);
+    }
+    public function provider()
+    {
+        return $this->hasOne(Provider::class);
+    }
+
+    public function service()
+    {
+        return $this->hasMany(ServiceOffer::class);
+    }
 }

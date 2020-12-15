@@ -16,7 +16,7 @@ class ServicePage extends Component
     use WithFileUploads;
 
     public $servicesOffer = [];
-    public $establishment, $categoryID, $description, $service_image;
+    public $establishment, $categoryID, $description, $service_image, $service_name;
     #For clearing the input file value
     public $iteration;
 
@@ -57,6 +57,7 @@ class ServicePage extends Component
     public function saveService()
     {
         $saved = ServiceOffer::create([
+            'name' => $this->service_name,
             'category_id' => $this->establishment,
             'provider_id' => $this->categoryID,
             'service_description' => $this->description
@@ -84,6 +85,12 @@ class ServicePage extends Component
                 'price' => $service['price']
             ]);
         }
+
+        # Incremenet no of service request
+        Category::where('id', $this->establishment)
+            ->update([
+            'no_services'=> DB::raw('no_services+1'), 
+        ]);
 
         $this->showServiceDialog = false;
         $this->iteration = rand();
