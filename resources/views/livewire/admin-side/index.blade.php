@@ -1,5 +1,4 @@
 @section('title', 'Admin Dashboard')
-
 <div class="flex relative" x-data="{ page:'dashboard', isLarge:false }">
     <div class="h-screen bg-blue-500 py-5 sticky left-0 top-0 bottom-0" x-show="isLarge">
         <div class="text-white  px-5 mb-5">
@@ -23,7 +22,6 @@
                 <li class="hover:text-gray-300">
                     <button class="items-center focus:outline-none" :class="{ 'active': page === 'categories' }" @click="page = 'categories'">
                         <span class="material-icons align-middle">format_align_left</span> 
-
                     </button>
                 </li>
                 <li class="hover:text-gray-300">
@@ -53,14 +51,14 @@
                     </button>
                 </li>
                 <li class="hover:text-gray-300">
-                    <a href="{{ url('/logout') }}" class="flex items-center" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  class=" items-center focus:outline-none">
+                    <a href="{{ url('/logout') }}" class="flex justify-center" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  class=" items-center focus:outline-none">
                         <span class="material-icons" align-middle>exit_to_app</span> 
                     </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
                 </li>
             </ul>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
         </div>
     </div>
 
@@ -125,7 +123,7 @@
                     </button>
                 </li>
                 <li class="hover:text-gray-300 px-3 py-3">
-                    <a href="{{ url('/logout') }}" class="flex items-center" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  class="flex space-x-3 items-center focus:outline-none">
+                    <a href="{{ url('/logout') }}" class="space-x-3 flex items-center" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"  class="flex space-x-3 items-center focus:outline-none">
                         <span class="material-icons">exit_to_app</span> 
                         <span>Logout</span>
                     </a>

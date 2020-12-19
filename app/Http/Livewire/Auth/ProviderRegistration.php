@@ -64,7 +64,6 @@ class ProviderRegistration extends Component
                 'lastname' => $this->lastname,
                 'contact_no' => $this->contactNo,
                 'email' => $this->email,
-                'city' => $this->city_value,
                 'password' => Hash::make($this->password),
             ]);
 
@@ -77,6 +76,7 @@ class ProviderRegistration extends Component
                 'middlename' => $this->middlename,
                 'gender'=> $this->gender,
                 'dob' => $this->dob,
+                'city' => $this->city_value,
                 'establishment' => $this->establishment,
             ]);
     

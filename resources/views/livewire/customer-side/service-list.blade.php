@@ -15,16 +15,17 @@
             </div>
 
             <!-- Categories -->
-            @if(count($serviceOffers) > 0)
+            @if(count($providers) > 0)
                 <div class="grid grid-cols-5 gap-4 px-15 my-5">
                 <!-- Items -->  
-                    @foreach($serviceOffers as $service)
+                    @foreach($providers as $service)
+                        @foreach($service->services as $provider_service)
                         <div class="border hover:bg-white transform transition hover:shadow-md  rounded-md">
-                            <img src="{{ asset('/storage/services/' . $service->image->url) }}" class="object-cover w-full rounded-tr-md rounded-tl-md" alt="">
+                            <img src="{{ asset('/storage/services/' . $provider_service->image->url) }}" class="object-cover w-full rounded-tr-md rounded-tl-md" alt="">
                             <div class="py-2">
                                 <div class="text-center">
-                                    <h1 class="font-bold text-xl">{{ $service->name }}</h1>
-                                    <p class="text-gray-700 px-2">{{ $service->provider->establishment }}</p>
+                                    <h1 class="font-bold text-xl">{{ $provider_service->name }}</h1>
+                                    <p class="text-gray-700 px-2">{{ $service->establishment }}</p>
                                 </div>
 
                                 <div class="text-left px-3 mt-5 mb-3 flex items-center justify-between">
@@ -38,12 +39,13 @@
                                             ?>
                                         </div>
                                         <!-- Requests made -->
-                                        <p class="text-gray-400 py-1 px-2 text-sm">{{$service->no_requests}} {{ Str::plural('Request', $service->no_requests) }}</p>
+                                        <p class="text-gray-400 py-1 px-2 text-sm">({{$provider_service->no_requests}}) {{ Str::plural('Request', $provider_service->no_requests) }}</p>
                                     </div>,
-                                    <a href="{{ route('requestservice', ['reqservice' => $service->id]) }}" class="bg-blue-500 py-2 hover:shadow px-5 rounded-full text-white">Request Now</a>
+                                    <a href="{{ route('requestservice', ['reqservice' => $provider_service->id]) }}" class="bg-blue-500 py-2 hover:shadow px-5 rounded-full text-white">Request Now</a>
                                 </div>
                             </div>
                         </div> 
+                        @endforeach
                     @endforeach
                 </div>
             @else

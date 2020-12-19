@@ -44,7 +44,7 @@
                                     @if($category->admin == 1)
                                         <td class="py-3 uppercase font-medium space-x-2">
                                             <span class="font-bold align-middle">Default Admin</span>
-                                            <button class="material-icons md-18 align-middle hover:shadow hover:bg-blue-500 hover:text-white rounded-md p-2" @click="assignAdminModal = !assignAdminModal">menu</button>
+                                            <button class="material-icons md-18 align-middle hover:shadow hover:bg-blue-500 hover:text-white rounded-md p-2" @click="assignAdminModal = !assignAdminModal" wire:click="categoryReceiverID({{$category->id}})">menu</button>
                                         </td>
                                     @else
                                         <td class="py-3 uppercase font-medium flex flex-col">
@@ -149,27 +149,33 @@
 
     <!-- Assign Admin Category Modal -->
     <div class="bg-gray-500 bg-opacity-25 h-screen absolute top-0 w-full flex justify-center overflow-auto p-0" x-show="assignAdminModal" x-cloak>
-        <div class="bg-white h-3/6 w-3/6 mt-15 rounded-md" x-show="assignAdminModal">
+        <div class="bg-white h-2/5 w-3/6 mt-15 rounded-md" x-show="assignAdminModal">
             <div class="bg-blue-500 text-white  flex items-center justify-between px-7 py-3 uppercase font-bold rounded-tl-md rounded-tr-md">
                 <span>Assign Category Admin</span>
                 <button class="material-icons hover:bg-red-600 rounded focus:outline-none" @click="assignAdminModal = !assignAdminModal">close</button>
             </div>
 
             <div class="my-3">
-                <form class="px-5" wire:submit.prevent="assignCategoryAdmin()" enctype="multipart/form-data">
+                <form class="px-5" wire:submit.prevent="assignCategoryAdmin" enctype="multipart/form-data">
                     @csrf
                     <div class="flex flex-col space-y-2 my-2">
                         <label for="" class="font-bold uppercase">Full Name</label>
-                        <input type="text" class="border rounded px-2 py-2 focus:border-blue-500" placeholder="Enter admin full name" wire:model="category_fullname" required autofocus>
+                        <input type="text" class="border rounded px-2 py-2 focus:border-blue-500" placeholder="Enter admin full name" wire:model.lazy="category_fullname" required autofocus>
+                        @error('category_fullname')
+                            <p class="text-sm italic text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="flex flex-col space-y-2 my-2">
                         <label for="" class="font-bold uppercase">Contact Number</label>
-                        <input type="number" class="border rounded px-2 py-2 focus:border-blue-500" placeholder="Contact number must be 11 digits" wire:model="contact_number" required autofocus>
+                        <input type="number" class="border rounded px-2 py-2 focus:border-blue-500" placeholder="Contact number must be 11 digits" wire:model.lazy="contact_number" required autofocus>
+                        @error('contact_number')
+                            <p class="text-sm italic text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
-                    <div class="flex flex-col space-y-2 my-2">
+                    <!-- <div class="flex flex-col space-y-2 my-2">
                         <label for="" class="font-bold uppercase">Password</label>
                         <input type="text" class="border rounded px-2 py-2 focus:border-blue-500" placeholder="Enter strong password" wire:model="password" required autofocus>
-                    </div>
+                    </div> -->
 
 
                     @if (session()->has('message'))

@@ -3,7 +3,7 @@
 
     <!-- Bottom Section -->
     <div class="sticky top-0 w-full">
-        <div class="border-t-2 px-15 flex justify-between items-center relative">
+        <div class="px-15 flex justify-between items-center relative">
                 <!-- Logo Here -->
                 <a href="/"><img src="{{ asset('logo/final-logo.jpg') }}" alt="Logo" class="w-32 object-cover"></a>
                 <!-- Components -->
@@ -26,10 +26,6 @@
                 @foreach($categories as $category)
                     <a href="{{ route('services', ['category' => $category->id]) }}" class="flex space-x-1 flex flex-col hover:shadow">
                         <img src="{{ asset('/storage/categories/' . $category->image->url) }}" class="rounded-tr-md rounded-tl-md w-36 h-36" alt="">
-                        <div>
-                            <h1 class="font-medium">{{ $category->name }}</h1>
-                            <p class="text-xs text-gray-500">({{ $category->no_services }}) {{ Str::plural('Service', $category->no_services) }}</p>
-                        </div>
                     </a>
                 @endforeach
             </div>

@@ -16,6 +16,7 @@ class CreateClientRequestServicesTable extends Migration
         Schema::create('client_request_services', function (Blueprint $table) {
             $table->id();
             $table->string("transaction_code");
+            $table->unsignedBigInteger("category_id");
             $table->unsignedBigInteger("customer_id");
             $table->unsignedBigInteger("serviceOffer_id");
             $table->double("totalAmount");

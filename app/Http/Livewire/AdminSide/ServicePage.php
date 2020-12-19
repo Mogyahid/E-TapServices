@@ -8,6 +8,7 @@ use App\Models\Provider;
 use App\Models\Category;
 use App\Models\ServiceOffer;
 use App\Models\ServiceItem;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Image;
 use DB;
 
@@ -58,8 +59,8 @@ class ServicePage extends Component
     {
         $saved = ServiceOffer::create([
             'name' => $this->service_name,
-            'category_id' => $this->establishment,
-            'provider_id' => $this->categoryID,
+            'category_id' => $this->categoryID,
+            'provider_id' => $this->establishment,
             'service_description' => $this->description
         ]);
 
@@ -103,12 +104,12 @@ class ServicePage extends Component
     public function deleteService(ServiceOffer $service)
     {
         # Getting the image by comparing the pass id to its id
-        $images = DB::table('images')->select('url')->where('imageable_id', $category->id)->get();
+        $images = DB::table('images')->select('url')->where('imageable_id', $service->id)->get();
 
         foreach($images as $image_url){
             $this->pastDeletedImage = $image_url->url; # Store editting image name
         }
-        $deleted = $category->delete();
+        $deleted = $service->delete();
 
         if($deleted){
             Storage::delete('public/categories/'.$this->pastDeletedImage);

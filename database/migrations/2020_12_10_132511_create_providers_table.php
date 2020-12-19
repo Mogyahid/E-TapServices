@@ -19,6 +19,7 @@ class CreateProvidersTable extends Migration
             $table->string("middlename")->nullable();
             $table->string("gender")->nullable();
             $table->string("dob")->nullable();
+            $table->string("city")->nullable();
             $table->string("establishment");
             $table->timestamps();
         });

@@ -37,29 +37,25 @@ Route::get('/', CustomerIndex::class)->name('home');
 // Customer Side Here...
 Route::get('services/{category}', ServiceList::class)->name('services');
 
+// Route::get('requestservice/{reqservice}/{cat_id}', ServiceDetail::class)->name('requestservice');
 Route::get('requestservice/{reqservice}', ServiceDetail::class)->name('requestservice');
 
 
 Route::get('feedback', AppliedProviderFeedback::class)->name('registrationFeedback');
 
-Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', AdminIndex::class)->name("admin.dashboard");
-});
+Route::get('/admin', AdminIndex::class)->name("admin.dashboard");
 
+Route::get('/provider', ProviderIndex::class)->name("provider.dashboard");
 
-Route::prefix('provider')->group(function(){
-    Route::get('/dashboard', ProviderIndex::class)->name("provider.dashboard");
-});
 Route::get('apply_provider', ProviderRegistration::class)->name('provider.register');
 
 Route::get('category', CategoryAdminIndex::class)->name("categoryAdmin.dashboard");
 
 
-Route::get('login', Login::class)->name('login');
+Route::get('login', Login::class)->name('login')->middleware("guest");
 
 
-Route::get('register', Register::class)
-->name('register');
+Route::get('register', Register::class)->name('register');
 
 Route::get('password/reset', Email::class)->name('password.request');
 

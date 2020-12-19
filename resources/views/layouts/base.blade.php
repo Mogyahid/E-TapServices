@@ -115,23 +115,21 @@
         @livewireScripts
 
         <!-- Include the Quill library -->
-        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/js/fontawesome.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
         <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
         <!-- Quill -->
-        <script>        
-
-            var quill = new Quill('#editor-container', {
-            modules: {
-                toolbar: true,
-            },
-            placeholder: 'Compose an epic...',
-            theme: 'snow'  // or 'bubble'
-            });
-        
+        <script> 
+            // Laravel Listener for notification
+            window.addEventListener('DOMContentLoaded', function(){
+                Echo.channel(`approved`)
+                .listen('ApprovedRequest', (e) => {
+                    console.log('It is working...');
+                    window.livewire.emit('ApproveRequest');
+                });
+            });               
             // Wait for window load
             $(window).load(function() {
                 // Animate loader off screen
@@ -176,6 +174,10 @@
                 $('#deliveryDate').attr('min', maxDate);
             });
 
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
         </script>
     </body>
 </html>

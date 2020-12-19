@@ -22,17 +22,19 @@ class ProviderMiddleWare
             return redirect()->route('login');
         }
 
-        if (Auth::user()->role_id == 1) { 
-            return redirect()->route('admin.dashboard');
-        }
-        if (Auth::user()->role_id == 2) {
-            return redirect()->route('categoryAdmin.dashboard');
-        }
-        if (Auth::user()->role_id == 3) { # Provider
-            return $next($request);
-        }
-        if (Auth::user()->role_id == 4) {
-            return redirect()->route('client.home');
+        if(Auth::check()){
+            if (Auth::user()->role_id == 1) { 
+                return redirect()->route('admin.dashboard');
+            }
+            if (Auth::user()->role_id == 2) {
+                return redirect()->route('categoryAdmin.dashboard');
+            }
+            if (Auth::user()->role_id == 3) { # Provider
+                return $next($request);
+            }
+            if (Auth::user()->role_id == 4) {
+                return redirect()->route('home');
+            }
         }
     }
 }

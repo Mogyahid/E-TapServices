@@ -22,17 +22,19 @@ class CustomerMiddleWare
             return redirect()->route('login');
         }
 
-        if (Auth::user()->role_id == 1) { 
-            return redirect()->route('admin.dashboard');
-        }
-        if (Auth::user()->role_id == 2) {
-            return redirect()->route('categoryAdmin.dashboard');
-        }
-        if (Auth::user()->role_id == 3) {
-            return redirect()->route('provider.dashboard');
-        }
-        if (Auth::user()->role_id == 4) { # Customer
-            return $next($request);
+        if(Auth::check()){
+            if (Auth::user()->role_id == 1) { 
+                return redirect()->route('admin.dashboard');
+            }
+            if (Auth::user()->role_id == 2) {
+                return redirect()->route('categoryAdmin.dashboard');
+            }
+            if (Auth::user()->role_id == 3) {
+                return redirect()->route('provider.dashboard');
+            }
+            if (Auth::user()->role_id == 4) { # Customer
+                return $next($request);
+            }
         }
     }
 }

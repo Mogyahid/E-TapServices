@@ -29,4 +29,9 @@ class ServiceOffer extends Model
     {
         return $this->morphOne('App\Models\Image', 'imageable');
     }
+
+    public function client_requests()
+    {
+        return $this->hasMany(ClientRequestService::class);
+    }
 }

@@ -13,95 +13,52 @@
                 <table class="w-full border">
                     <thead>
                         <tr class="text-left bg-blue-500 text-white">
-                            <th class="py-3 uppercase font-medium pl-3">Image</th>
+                            <th class="py-3 uppercase font-medium pl-3">Customer Info</th>
                             <th class="py-3 uppercase font-medium">Establishment / Provider</th>
                             <th class="py-3 uppercase font-medium">Category</th>
                             <th class="py-3 uppercase font-medium">Avail. Services</th>
                             <th class="py-3 uppercase font-medium">Price (Php)</th>
+                            <!-- <th class="py-3 uppercase font-medium">Delivery Address</th> -->
                             <th class="py-3 uppercase font-medium">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white hover:bg-gray-100 border-b">
-                            <td class="uppercase font-medium pl-1 py-1">
-                                <img src="https://picsum.photos/50/50" class="rounded-md shadow" alt="">
-                            </td>
-                            <td class="py-3 font-medium flex flex-col">
-                                <span class="uppercase">Ansid's Laundry Shop</span>
-                                <span class="text-sm text-gray-400">Ansid, Mogyahid - 09357788005</span>
-                            </td>
-                            <td class="py-3 uppercase font-medium">Cleaning</td>
-                            <td class="py-3 uppercase font-medium">Bedroom Cleaning</td>
-                            <td class="py-3 uppercase font-medium">560.00</td>
-                            <td class="py-3 uppercase font-medium">
-                                <button class="text-white bg-blue-500 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">edit</span></button>
-                                <button class="text-white bg-red-600 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">delete</span></button>
-                            </td>
+                    @if(count($pendingrequests) > 0)
+                        @foreach($pendingrequests as $request)
+                            <tr class="bg-white hover:bg-gray-100 border-b">
+                                <td class="uppercase font-medium pl-1 py-1">
+                                    <!-- {{ $request}} -->
+                                </td>
+                                <td class="py-3 font-medium flex flex-col">
+                                @dump($request->user)
+                                    <span class="uppercase">{{ $request->provider }}</span>
+                                    <span class="text-sm text-gray-400">Ansid, Mogyahid - 09357788005</span>
+                                </td>
+                                <td class="py-3 font-medium flex flex-col">
+                                    <span class="uppercase">Ansid's Laundry Shop</span>
+                                    <span class="text-sm text-gray-400">Ansid, Mogyahid - 09357788005</span>
+                                </td>
+                                <td class="py-3 uppercase font-medium"></td>
+                                <td class="py-3 uppercase font-medium">Bedroom Cleaning</td>
+                                <td class="py-3 uppercase font-medium">{{ number_format($request->totalAmount, 2, '.', ',') }}</td>
+                                <!-- <td class="py-3 uppercase font-medium text-sm">{{ $request->delivery_address}}</td> -->
+                                <td class="uppercase font-medium flex space-x-2 align-middle">
+                                    <button class="text-white bg-blue-500 px-2 py-2 rounded-md hover:shadow-md flex items-center space-x-2" wire:click="acceptRequest({{$request->id}})">
+                                        <span class="material-icons text-sm">thumb_up</span>
+                                        <span>Accept</span>
+                                    </button>
+                                    <button class="text-white bg-red-600 px-2 py-2 rounded-md hover:shadow-md flex items-center space-x-2">
+                                        <span class="material-icons text-sm">thumb_down</span>
+                                        <span>Decline</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td class="text-center py-3 text-red-500" colspan="6">No Request Found!</td>
                         </tr>
-                        <tr class="bg-white hover:bg-gray-100 border-b">
-                            <td class="uppercase font-medium pl-1 py-1">
-                                <img src="https://picsum.photos/50/50" class="rounded-md shadow" alt="">
-                            </td>
-                            <td class="py-3 font-medium flex flex-col">
-                                <span class="uppercase">Ansid's Laundry Shop</span>
-                                <span class="text-sm text-gray-400">Ansid, Mogyahid - 09357788005</span>
-                            </td>
-                            <td class="py-3 uppercase font-medium">Cleaning</td>
-                            <td class="py-3 uppercase font-medium">Bedroom Cleaning</td>
-                            <td class="py-3 uppercase font-medium">560.00</td>
-                            <td class="py-3 uppercase font-medium">
-                                <button class="text-white bg-blue-500 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">edit</span></button>
-                                <button class="text-white bg-red-600 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">delete</span></button>
-                            </td>
-                        </tr>
-                        <tr class="bg-white hover:bg-gray-100 border-b">
-                            <td class="uppercase font-medium pl-1 py-1">
-                                <img src="https://picsum.photos/50/50" class="rounded-md shadow" alt="">
-                            </td>
-                            <td class="py-3 font-medium flex flex-col">
-                                <span class="uppercase">Ansid's Laundry Shop</span>
-                                <span class="text-sm text-gray-400">Ansid, Mogyahid - 09357788005</span>
-                            </td>
-                            <td class="py-3 uppercase font-medium">Cleaning</td>
-                            <td class="py-3 uppercase font-medium">Bedroom Cleaning</td>
-                            <td class="py-3 uppercase font-medium">560.00</td>
-                            <td class="py-3 uppercase font-medium">
-                                <button class="text-white bg-blue-500 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">edit</span></button>
-                                <button class="text-white bg-red-600 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">delete</span></button>
-                            </td>
-                        </tr>
-                        <tr class="bg-white hover:bg-gray-100 border-b">
-                            <td class="uppercase font-medium pl-1 py-1">
-                                <img src="https://picsum.photos/50/50" class="rounded-md shadow" alt="">
-                            </td>
-                            <td class="py-3 font-medium flex flex-col">
-                                <span class="uppercase">Ansid's Laundry Shop</span>
-                                <span class="text-sm text-gray-400">Ansid, Mogyahid - 09357788005</span>
-                            </td>
-                            <td class="py-3 uppercase font-medium">Cleaning</td>
-                            <td class="py-3 uppercase font-medium">Bedroom Cleaning</td>
-                            <td class="py-3 uppercase font-medium">560.00</td>
-                            <td class="py-3 uppercase font-medium">
-                                <button class="text-white bg-blue-500 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">edit</span></button>
-                                <button class="text-white bg-red-600 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">delete</span></button>
-                            </td>
-                        </tr>
-                        <tr class="bg-white hover:bg-gray-100 border-b">
-                            <td class="uppercase font-medium pl-1 py-1">
-                                <img src="https://picsum.photos/50/50" class="rounded-md shadow" alt="">
-                            </td>
-                            <td class="py-3 font-medium flex flex-col">
-                                <span class="uppercase">Ansid's Laundry Shop</span>
-                                <span class="text-sm text-gray-400">Ansid, Mogyahid - 09357788005</span>
-                            </td>
-                            <td class="py-3 uppercase font-medium">Cleaning</td>
-                            <td class="py-3 uppercase font-medium">Bedroom Cleaning</td>
-                            <td class="py-3 uppercase font-medium">560.00</td>
-                            <td class="py-3 uppercase font-medium">
-                                <button class="text-white bg-blue-500 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">edit</span></button>
-                                <button class="text-white bg-red-600 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">delete</span></button>
-                            </td>
-                        </tr>
+                    @endif
                     </tbody>
                 </table>
             </div>
@@ -126,90 +83,29 @@
                             <th class="py-3 uppercase font-medium">Category</th>
                             <th class="py-3 uppercase font-medium">Avail. Services</th>
                             <th class="py-3 uppercase font-medium">Price (Php)</th>
-                            <th class="py-3 uppercase font-medium">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white hover:bg-gray-100 border-b">
-                            <td class="uppercase font-medium pl-1 py-1">
-                                <img src="https://picsum.photos/50/50" class="rounded-md shadow" alt="">
-                            </td>
-                            <td class="py-3 font-medium flex flex-col">
-                                <span class="uppercase">Ansid's Laundry Shop</span>
-                                <span class="text-sm text-gray-400">Ansid, Mogyahid - 09357788005</span>
-                            </td>
-                            <td class="py-3 uppercase font-medium">Cleaning</td>
-                            <td class="py-3 uppercase font-medium">Bedroom Cleaning</td>
-                            <td class="py-3 uppercase font-medium">560.00</td>
-                            <td class="py-3 uppercase font-medium">
-                                <button class="text-white bg-blue-500 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">edit</span></button>
-                                <button class="text-white bg-red-600 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">delete</span></button>
-                            </td>
-                        </tr>
-                        <tr class="bg-white hover:bg-gray-100 border-b">
-                            <td class="uppercase font-medium pl-1 py-1">
-                                <img src="https://picsum.photos/50/50" class="rounded-md shadow" alt="">
-                            </td>
-                            <td class="py-3 font-medium flex flex-col">
-                                <span class="uppercase">Ansid's Laundry Shop</span>
-                                <span class="text-sm text-gray-400">Ansid, Mogyahid - 09357788005</span>
-                            </td>
-                            <td class="py-3 uppercase font-medium">Cleaning</td>
-                            <td class="py-3 uppercase font-medium">Bedroom Cleaning</td>
-                            <td class="py-3 uppercase font-medium">560.00</td>
-                            <td class="py-3 uppercase font-medium">
-                                <button class="text-white bg-blue-500 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">edit</span></button>
-                                <button class="text-white bg-red-600 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">delete</span></button>
-                            </td>
-                        </tr>
-                        <tr class="bg-white hover:bg-gray-100 border-b">
-                            <td class="uppercase font-medium pl-1 py-1">
-                                <img src="https://picsum.photos/50/50" class="rounded-md shadow" alt="">
-                            </td>
-                            <td class="py-3 font-medium flex flex-col">
-                                <span class="uppercase">Ansid's Laundry Shop</span>
-                                <span class="text-sm text-gray-400">Ansid, Mogyahid - 09357788005</span>
-                            </td>
-                            <td class="py-3 uppercase font-medium">Cleaning</td>
-                            <td class="py-3 uppercase font-medium">Bedroom Cleaning</td>
-                            <td class="py-3 uppercase font-medium">560.00</td>
-                            <td class="py-3 uppercase font-medium">
-                                <button class="text-white bg-blue-500 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">edit</span></button>
-                                <button class="text-white bg-red-600 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">delete</span></button>
-                            </td>
-                        </tr>
-                        <tr class="bg-white hover:bg-gray-100 border-b">
-                            <td class="uppercase font-medium pl-1 py-1">
-                                <img src="https://picsum.photos/50/50" class="rounded-md shadow" alt="">
-                            </td>
-                            <td class="py-3 font-medium flex flex-col">
-                                <span class="uppercase">Ansid's Laundry Shop</span>
-                                <span class="text-sm text-gray-400">Ansid, Mogyahid - 09357788005</span>
-                            </td>
-                            <td class="py-3 uppercase font-medium">Cleaning</td>
-                            <td class="py-3 uppercase font-medium">Bedroom Cleaning</td>
-                            <td class="py-3 uppercase font-medium">560.00</td>
-                            <td class="py-3 uppercase font-medium">
-                                <button class="text-white bg-blue-500 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">edit</span></button>
-                                <button class="text-white bg-red-600 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">delete</span></button>
-                            </td>
-                        </tr>
-                        <tr class="bg-white hover:bg-gray-100 border-b">
-                            <td class="uppercase font-medium pl-1 py-1">
-                                <img src="https://picsum.photos/50/50" class="rounded-md shadow" alt="">
-                            </td>
-                            <td class="py-3 font-medium flex flex-col">
-                                <span class="uppercase">Ansid's Laundry Shop</span>
-                                <span class="text-sm text-gray-400">Ansid, Mogyahid - 09357788005</span>
-                            </td>
-                            <td class="py-3 uppercase font-medium">Cleaning</td>
-                            <td class="py-3 uppercase font-medium">Bedroom Cleaning</td>
-                            <td class="py-3 uppercase font-medium">560.00</td>
-                            <td class="py-3 uppercase font-medium">
-                                <button class="text-white bg-blue-500 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">edit</span></button>
-                                <button class="text-white bg-red-600 px-2 pt-2 rounded-md hover:shadow-md"><span class="material-icons">delete</span></button>
-                            </td>
-                        </tr>
+                        @if(count($approvedrequests) > 0)
+                            @foreach($approvedrequests as $request)
+                                <tr class="bg-white hover:bg-gray-100 border-b">
+                                    <td class="uppercase font-medium pl-1 py-1">
+                                        <img src="https://picsum.photos/50/50" class="rounded-md shadow" alt="">
+                                    </td>
+                                    <td class="py-3 font-medium flex flex-col">
+                                        <span class="uppercase">Ansid's Laundry Shop</span>
+                                        <span class="text-sm text-gray-400">Ansid, Mogyahid - 09357788005</span>
+                                    </td>
+                                    <td class="py-3 uppercase font-medium"></td>
+                                    <td class="py-3 uppercase font-medium">Bedroom Cleaning</td>
+                                    <td class="py-3 uppercase font-medium">{{ number_format($request->totalAmount, 2, '.', ',') }}</td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td class="text-center py-3 text-red-500" colspan="6">No Request Found!</td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>

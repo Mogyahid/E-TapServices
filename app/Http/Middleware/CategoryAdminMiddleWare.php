@@ -20,18 +20,19 @@ class CategoryAdminMiddleWare
         if (!Auth::check()) {
             return redirect()->route('login');
         }
-
-        if (Auth::user()->role_id == 1) { 
-            return redirect()->route('admin.dashboard');
-        }
-        if (Auth::user()->role_id == 2) { #Category Admin
-            return $next($request);
-        }
-        if (Auth::user()->role_id == 3) {
-            return redirect()->route('provider.dashboard');
-        }
-        if (Auth::user()->role_id == 4) {
-            return redirect()->route('client.home');
+        if(Auth::check()){
+            if (Auth::user()->role_id == 1) { 
+                return redirect()->route('admin.dashboard');
+            }
+            if (Auth::user()->role_id == 2) { #Category Admin
+                return $next($request);
+            }
+            if (Auth::user()->role_id == 3) {
+                return redirect()->route('provider.dashboard');
+            }
+            if (Auth::user()->role_id == 4) {
+                return redirect()->route('home');
+            }
         }
     }
 }

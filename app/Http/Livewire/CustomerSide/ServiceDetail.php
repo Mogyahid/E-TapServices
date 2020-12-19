@@ -17,6 +17,7 @@ class ServiceDetail extends Component
     public $requestItems = [];
     public $totalAmount = 00.00;
     public $service_id;
+    public $category_id;
     public $image_id;
     public $items = [];
     public $service_item;
@@ -30,13 +31,16 @@ class ServiceDetail extends Component
     public function mount(ServiceOffer $reqservice)
     {
         $this->service_id = $reqservice->id;
+        // $this->category_id = $cat_id; //Pass with reqservice
     }
     
     public function render()
     {
-        $this->transaction_code = now()->format('Ydm');
+        // dd(session()->pull("cat_id"));
+        // dd($this->category_id);
         // Get the user address
-        $this->address = Address::select('street','barangay', 'city', 'province')->where('user_id', Auth::id())->get();
+
+        $this->address = Address::where('user_id', Auth::user()->id)->get();
         $this->items = collect();
         foreach($this->requestItems as $req_id){
             $this->items->push(ServiceItem::find($req_id));
@@ -53,8 +57,26 @@ class ServiceDetail extends Component
 
     public function sendRequest()
     {
+        $requestCount = ClientRequestService::all();
+        $this->transaction_code = now()->format('Ydm');
+
+        if($requestCount->count() <= 0){
+            $this->transaction_code = ("T1"."-".$this->transaction_code);
+        }
+        else{
+            $this->transaction_code = ("T".$requestCount->count()."-".$this->transaction_code);
+        }
+
+        $this->validate([
+            'deliveryDate' => ['required']
+        ]);
+
+        foreach($this->address as $add){
+            $this->address = ($add->street .", ". $add->barangay .", ". $add->city .", ". $add->province);
+        }
         $req = ClientRequestService::create([
-            'transaction_code' => $this->transaction_code ,
+            'transaction_code' => $this->transaction_code,
+            'category_id' => session()->pull("cat_id"),
             'customer_id' => Auth::id(),
             'serviceOffer_id' => $this->service_id,
             'totalAmount' => $this->totalAmount,

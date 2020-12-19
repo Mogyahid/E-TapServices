@@ -49,6 +49,11 @@ class User extends Authenticatable
     {
         return $this->hasOne(Address::class);
     }
+
+    public function receivesBroadcastNotificationsOn()
+    {
+        return "users.$this->id";
+    }
     public function provider()
     {
         return $this->hasOne(Provider::class);

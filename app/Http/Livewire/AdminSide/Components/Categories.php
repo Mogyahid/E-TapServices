@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Livewire\Component;
 use App\Models\Image;
 use App\Models\Category;
+use App\Models\CategoryAdmin;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use DB;
 
@@ -28,6 +31,7 @@ class Categories extends Component
     public $iteration;
 
     public $ifForEdit;
+    public $cat_id, $categoryDefaultPassword;
 
     # Add Controls/Inputs
     public $category_image, $category_name;
@@ -162,8 +166,48 @@ class Categories extends Component
         }
     }
 
+    public function categoryReceiverID(Category $id)
+    {
+        $this->cat_id = $id->id;
+        $this->categoryDefaultPassword = Category::where('id', $id->id)->get(); //Get the assign category
+    }
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName, [
+            'category_fullname' => ['required', 'string'],
+            'contact_number' => ['required', 'digits:11', 'unique:users,contact_no'],
+        ]);
+    }
+
     public function assignCategoryAdmin()
     {
-        $this->showAssignAdmin = false;
+        $this->validate([
+            'category_fullname' => ['required', 'string'],
+            'contact_number' => ['required', 'digits:11', 'unique:users,contact_no'],
+        ]);
+
+        
+        foreach($this->categoryDefaultPassword as $defaultPassword){
+            $user = User::create([
+                'firstname' => $this->category_fullname,
+                'lastname' => '',
+                'email' => $defaultPassword->name."@gmail.com",
+                'contact_no' => $this->contact_number,
+                'password' => Hash::make($defaultPassword->name)
+            ]);
+            $user_id = $user->id;
+            User::where('id', $user_id)->update(["role_id" => 2, 'category_id' => $defaultPassword->id]);
+    
+            $admin_id = CategoryAdmin::create([
+                'user_id' => $user_id,
+                'category_id' => $this->cat_id,
+                'admin_fullname' => $this->category_fullname
+            ]);
+            
+            $id = $admin_id->id; # Getting the id of the last category admin
+            Category::where('id', $this->cat_id)->update(['admin' => $id]);
+    
+            $this->showAssignAdmin = false;
+        }
     }
 }

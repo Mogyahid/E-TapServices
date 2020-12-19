@@ -12,6 +12,6 @@ class ServiceItem extends Model
     protected $guarded = [];
     public function serviceOffer()
     {
-        return $this->belongsTo(serviceOffer::class, "service_id", "id");
+        return $this->belongsTo(ServiceOffer::class, "service_id", "id");
     }
 }

@@ -34,7 +34,7 @@
                                 @foreach($services as $service)
                                     <tr class="bg-white border-b hover:bg-gray-100">
                                         <td><img src="{{ asset('/storage/services/' .$service->image->url) }}" class="object-cover h-15 ml-1 rounded-md w-15 shadow" alt=""></td>
-                                        <td><span class="font-bold">{{$service->provider->establishment}}</span></td>
+                                        <td><span class="font-bold">{{ $service->provider->establishment}}</span></td>
                                         <td>{{ $service->category->name }}</td>
                                         <td>
                                             @foreach($service->serviceItem as $item)
@@ -48,7 +48,7 @@
                                         </td>
                                         <td>
                                             <button class="hover:bg-blue-500 hover:text-white text-blue-500 p-1 hover:shadow-md material-icons rounded-md align-middle" wire:click="" @click="">edit</button>
-                                            <button class="hover:bg-red-600 hover:text-white text-red-600 p-1 hover:shadow-md material-icons rounded-md align-middle" wire:click="">delete</button>
+                                            <button class="hover:bg-red-600 hover:text-white text-red-600 p-1 hover:shadow-md material-icons rounded-md align-middle" wire:click="deleteService({{ $service->id }})">delete</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -85,7 +85,6 @@
                         <div class="flex flex-col w-full">
                             <label for="" class="font-medium">Establishement Name</label>
                             <select class="border px-2 py-3 rounded-md w-full" wire:model="establishment">
-                                <option selected>Please Establishement Name</option>
                                 @foreach ($establishments as $establish)
                                     <option value="{{$establish->id}}">{{$establish->establishment}}</option>
                                 @endforeach

@@ -5,20 +5,23 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Notifications\Notification;
 
-class RequestApproved extends Notification
+class RequestApproved extends Notification implements ShouldQueue
 {
     use Queueable;
+
+    private $requestDetails;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($requestDetails)
     {
-        //
+        $this->requestDetails = $requestDetails;
     }
 
     /**
@@ -29,7 +32,7 @@ class RequestApproved extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -46,10 +49,12 @@ class RequestApproved extends Notification
                     ->line('Thank you for using our application!');
     }
 
-    public function toDatabase()
-    {
-        # code...
-    }
+    // public function toDatabase()
+    // {
+    //     return [
+    //         'request_details' => $this->requestDetails,
+    //     ];
+    // }
 
     /**
      * Get the array representation of the notification.
@@ -60,7 +65,7 @@ class RequestApproved extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'request_details' => $this->requestDetails,
         ];
     }
 }

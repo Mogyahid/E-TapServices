@@ -47,8 +47,8 @@
 
                <div>
                     <h1 class="text-3xl uppercase font-black mt-5">Description</h1>
-                    @foreach($getDescriptions as $description)
-                         <p class="text-justify mr-10 text-xl text-gray-700">{{ $description->serviceOffer->service_description }}</p>
+                    @foreach($offerImages as $description)
+                         <p class="text-justify mr-10 text-xl text-gray-700">{{ $description->service_description }}</p>
                     @endforeach
                </div>
 
@@ -162,6 +162,7 @@
                 <span class="material-icons cursor-pointer hover:bg-red-600" @click="requestModal = !requestModal">close</span>    
             </div>
             <div class="px-5 mt-3">
+                @if(count($items) > 0)
                     <div class="my-2 h-3/5 relative">
                         <div class="mt-2">
                             <ul class="mt-3">                                
@@ -169,18 +170,12 @@
                                     <span>Service Name</span>
                                     <span>Price</span>
                                 </li>
-                                @if(count($items) > 0)
                                     @foreach($items as $item)
                                         <li class="flex items-center font-medium uppercase text-l justify-between px-3 mt-3 text-blue-500">
                                             <span>{{ $item->service_name }}</span>
                                             <span>{{ number_format($item->price, 2, '.', ',') }}</span>
                                         </li>
                                     @endforeach
-                                @else
-                                    <li class="flex items-center justify-center mt-7">
-                                        <h1 class="text-xl text-gray-500">It seems you forgot to check the service you want!</h1>
-                                    </li>
-                                @endif
                             </ul>
                         </div>
                         <div class="mt-2 font-bold flex items-center font-medium w-full uppercase text-l justify-between bg-blue-300 border py-3 px-2 absolute bottom-3">
@@ -191,11 +186,33 @@
                   <div class="absolute bottom-5 left-0 right-0 mx-7">
                         <span class="font-medium uppercase text-xl mb-2">Pick Delivery Date:</span>
                         <div class="flex items-center space-x-3">
-                            <input type="date" class="border px-3 py-3 w-full rounded focus:shadow" id="deliveryDate" wire:model="deliveryDate">
+                            <div class="w-full">
+                                <input type="date" class="border px-3 py-3 w-full rounded focus:shadow @error('deliveryDate') border-red-600 focus @enderror" id="deliveryDate" wire:model="deliveryDate">
+                                @error('deliveryDate')
+                                        <p class="text-sm italic text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
                             <button class="bg-blue-500 text-white py-4 hover:shadow px-3 w-64 rounded uppercase" wire:click.prevent="sendRequest">Continue</button>      
                         </div>
                   </div>
+                @else
+                    <div class="h-5/6 w-full text-center mb-2 bg-gray-300 flex items-center justify-center border bg-opacity-25 rounded-md">
+                        <div>
+                            <h1 class="text-xl uppercase font-medium">It seems that you forgot to choose service(s)</h1>
+                            <span class="text-sm font-mediumd text-gray-500">Choose at least one (1) service before you can continue.</span>
+                        </div>
+                    </div> 
+                @endif
             </div>
         </div>
     </div>
 </div>
+
+
+
+<!-- <div class="h-4/5 w-full text-center bg-gray-300 mt-3 flex items-center justify-center border bg-opacity-25 rounded-md">
+    <div>
+        <h1 class="text-xl uppercase font-medium">It seems that you forgot to choose service(s)</h1>
+        <span class="text-sm font-mediumd text-gray-500">Choose at least one (1) service before you can continue.</span>
+    </div>
+</div> -->
