@@ -10,6 +10,7 @@ use App\Models\ServiceOffer;
 use App\Models\ServiceItem;
 use App\Models\Image;
 use DB;
+use Auth;
 
 class Index extends Component
 {
@@ -35,7 +36,7 @@ class Index extends Component
     {
         return view('livewire.provider-side.index', [
             "categories" => Category::all(),
-            'services' => ServiceOffer::all(),
+            'services' => ServiceOffer::where('provider_id', Auth::user()->id),
         ]);
     }
 
@@ -56,7 +57,7 @@ class Index extends Component
      {
          $saved = ServiceOffer::create([
              'name' => $this->service_name,
-             'category_id' => $this->establishment,
+             'category_id' => $this->categoryID,
              'provider_id' => Auth::user()->id,
              'service_description' => $this->description
          ]);

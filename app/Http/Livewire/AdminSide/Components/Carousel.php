@@ -25,7 +25,7 @@ class Carousel extends Component
     public function render()
     {
         return view('livewire.admin-side.components.carousel', [
-            'carousel' => CarouselModel::all()
+            'carousels' => CarouselModel::all()
         ]);
     }
 

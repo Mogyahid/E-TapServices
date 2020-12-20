@@ -39,7 +39,12 @@ class Login extends Component
                         return redirect()->route('categoryAdmin.dashboard');
                         break;
                     case 3:
-                        return redirect()->route('provider.dashboard');
+                        if(Auth::user()->isProviderConfirmed == 0){
+                            $this->addError('email', trans('auth.failed'));
+                        }
+                        else{
+                            return redirect()->route('provider.dashboard');
+                        }
                         break;
                     case 4:
                         return redirect()->route('home');

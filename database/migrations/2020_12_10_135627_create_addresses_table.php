@@ -20,6 +20,9 @@ class CreateAddressesTable extends Migration
             $table->string("city");
             $table->string("barangay");
             $table->string("street");
+            $table->foreign('user_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }

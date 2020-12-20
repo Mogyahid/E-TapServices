@@ -28,10 +28,12 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Quill Rich Text -->
-        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.css" rel="stylesheet">
 
         <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+        <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
 
         <!-- Custom CSS -->
         <style>
@@ -104,6 +106,8 @@
             }
 
         </style>
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">        
 
         <!-- <link rel="styleshee" -->
     </head>
@@ -119,9 +123,31 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
         <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script src="owlcarousel/owl.carousel.min.js"></script>
 
         <!-- Quill -->
         <script> 
+        $(document).ready(function() {
+            $("#owl-demo").owlCarousel({
+                navigation : true, // Show next and prev buttons
+                slideSpeed : 300,
+                paginationSpeed : 400,
+                items : 1, 
+                loop:true,
+                autoplay:true,
+                autoplayTimeout:3000,
+                autoplayHoverPause:true,
+                animateOut: 'fadeOut',
+                mouseDrag: true,
+                touchDrag: true,
+                freeDrag: true,
+                pullDrag: true,
+                dots: true,
+                lazyLoad: true
+            });
+        });
             // Laravel Listener for notification
             window.addEventListener('DOMContentLoaded', function(){
                 Echo.channel(`approved`)
@@ -136,21 +162,6 @@
                 $(".se-pre-con").fadeOut("slow");
             });
 
-            var flky = new Flickity( '.carousel', {
-                // options, defaults listed
-
-                accessibility: true,
-                // enable keyboard navigation, pressing left & right keys
-
-                adaptiveHeight: true,
-                // set carousel height to the selected slide
-
-                autoPlay: true,
-                // advances to the next cell
-                // if true, default is 3 seconds
-                // or set time between advances in milliseconds
-                // i.e. `autoPlay: 1000` will advance every 1 second
-            });
 
             //TotalAmount Calculation
             document.querySelectorAll('.service_name').forEach((element,index) =>{

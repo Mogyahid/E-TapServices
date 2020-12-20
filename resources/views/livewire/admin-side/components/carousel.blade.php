@@ -1,15 +1,15 @@
 <div>
-    <!-- <div class="flex-1 px-10 py-7">
+    <div class="flex-1 px-10 py-7">
         <h1 class="font-black uppercase text-2xl">Advertisement Management</h1>
         <h1 class="font-black text-gray-500 uppercase mt-5 text-xl mb-2">Carousel Preview</h1>
 
         <div class="flex justify-between">
 
-            <div class="flex-1 pr-10">
-                <div class="carousel h-4/6 shadow-md border border-blue-500">
-                    @if(count($carousel) > 0)
-                        @foreach($carousel as $item)
-                            <div class="carousel-cell w-full h-full">
+            <div class="flex-1 pr-10 W-80">
+                <div id="owl-demo" class="owl-carousel owl-theme">
+                    @if(count($carousels) > 0)
+                        @foreach($carousels as $item)
+                            <div class="carousel-cell w-full h-3/5 border rounded-md border-blue-500">
                                 <img src="{{ asset('/storage/carousel/' . $item->image->url) }}" class="object-cover h-full w-full rounded-md shadow-md" alt="">
                             </div>
                         @endforeach
@@ -31,8 +31,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if(count($carousel) > 0)
-                                @foreach($carousel as $item)
+                            @if(count($carousels) > 0)
+                                @foreach($carousels as $item)
                                     <tr class="border-b">
                                         <td class="py-1">
                                             <img src="{{ asset('/storage/carousel/' . $item->image->url) }}" class="ml-2 object-cover rounded-md w-15 h-15 shadow" alt="">
@@ -88,7 +88,5 @@
                 </form>
             </div>
         </div>
-    </div> -->
-
-    Test
+    </div>
 </div>

@@ -17,11 +17,6 @@ class AdminMiddleWare
      * @return mixed
      */
 
-     public function __construct()
-     {
-         $this->middleware('auth');
-     }
-     
     public function handle(Request $request, Closure $next)
     {
         if (!Auth::check()) {

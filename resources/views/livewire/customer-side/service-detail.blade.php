@@ -53,7 +53,7 @@
                </div>
 
                <div class="mt-5 w-full space-x-3 flex">
-                    <button class="bg-blue-500 text-white py-3 px-5 rounded-md font-medium uppercase text-xl hover:shadow" @click="requestModal = !requestModal">Continue Request</button>
+                    <button class="bg-blue-500 text-white py-3 px-5 rounded-md font-medium uppercase text-xl hover:shadow" @click="requestModal = !requestModal" onClick="topFunction()">Continue Request</button>
                     <button class="border border-blue-500 text-blue-500 flex items-center py-3 px-5 rounded-md font-medium uppercase text-xl hover:shadow">
                         <span class="material-icons">location_on</span> 
                         <span> Change Delivery Address</span>

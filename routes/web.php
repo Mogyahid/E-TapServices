@@ -35,27 +35,36 @@ use Illuminate\Support\Facades\Http;
 Route::get('/', CustomerIndex::class)->name('home');
 
 // Customer Side Here...
-Route::get('services/{category}', ServiceList::class)->name('services');
-
-// Route::get('requestservice/{reqservice}/{cat_id}', ServiceDetail::class)->name('requestservice');
-Route::get('requestservice/{reqservice}', ServiceDetail::class)->name('requestservice');
-
-
-Route::get('feedback', AppliedProviderFeedback::class)->name('registrationFeedback');
-
-Route::get('/admin', AdminIndex::class)->name("admin.dashboard");
-
-Route::get('/provider', ProviderIndex::class)->name("provider.dashboard");
-
-Route::get('apply_provider', ProviderRegistration::class)->name('provider.register');
-
-Route::get('category', CategoryAdminIndex::class)->name("categoryAdmin.dashboard");
+Route::middleware(['auth', 'customer'])->group(function () {
+    Route::get('services/{category}', ServiceList::class)->name('services');
+    Route::get('requestservice/{reqservice}', ServiceDetail::class)->name('requestservice');
+});
 
 
-Route::get('login', Login::class)->name('login')->middleware("guest");
+//Provider Page Route
+Route::middleware(['auth', 'provider'])->group(function () {
+    Route::get('/provider', ProviderIndex::class)->name("provider.dashboard");
+});
 
 
-Route::get('register', Register::class)->name('register');
+// Admin Route Pages
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', AdminIndex::class)->name("admin.dashboard");
+});
+
+// Category Admin Route Page
+Route::middleware(['auth', 'category'])->group(function () {
+    Route::get('category', CategoryAdminIndex::class)->name("categoryAdmin.dashboard");
+});
+
+
+// Auth route
+Route::middleware(['guest'])->group(function () {
+    Route::get('login', Login::class)->name('login');
+    Route::get('register', Register::class)->name('register');
+    Route::get('apply_provider', ProviderRegistration::class)->name('provider.register');
+    Route::get('feedback', AppliedProviderFeedback::class)->name('registrationFeedback');
+});
 
 Route::get('password/reset', Email::class)->name('password.request');
 

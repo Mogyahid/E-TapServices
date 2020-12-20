@@ -31,6 +31,7 @@
                 @endguest
             </div>
 
+            @auth
             <!-- Notification Dropdown -->
             <div class="bg-white w-96 z-20 border rounded-md absolute right-32 top-10" x-show="isNotificationOpen" @click.away="isNotificationOpen = false">
                 <h1 class="px-3 py-3 border-b-2 space-x-3 flex items-center font-medium uppercase">
@@ -64,6 +65,7 @@
                     <button></button>
                 </div>
             </div>
+            @endauth
 
             <!-- Account Dropdown -->
             <div class="bg-white border rounded-md z-20 absolute right-7 top-10 w-64" x-show="isAccountOpen" @click.away="isAccountOpen = false">

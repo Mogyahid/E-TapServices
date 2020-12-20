@@ -48,8 +48,8 @@
                                         </td>
                                     @else
                                         <td class="py-3 uppercase font-medium flex flex-col">
-                                            <span class="font-bold">Admin Category name here</span>
-                                            <span>His/her number</span>
+                                            <span class="font-bold">{{ $category->categoryAdmin->firstname }}</span>
+                                            <span>{{ $category->categoryAdmin->contact_no}}</span>
                                         </td>
                                     @endif
                                     <td class="py-3 uppercase font-medium">

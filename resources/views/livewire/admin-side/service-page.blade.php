@@ -34,7 +34,9 @@
                                 @foreach($services as $service)
                                     <tr class="bg-white border-b hover:bg-gray-100">
                                         <td><img src="{{ asset('/storage/services/' .$service->image->url) }}" class="object-cover h-15 ml-1 rounded-md w-15 shadow" alt=""></td>
-                                        <td><span class="font-bold">{{ $service->provider->establishment}}</span></td>
+                                        <td>
+                                            <span class="font-bold">{{ $service->provider->establishment }}</span>
+                                        </td>
                                         <td>{{ $service->category->name }}</td>
                                         <td>
                                             @foreach($service->serviceItem as $item)
@@ -81,13 +83,17 @@
                             <label for="" class="font-medium">Choose Service Image</label>
                             <input type="file" class="border p-2 rounded-md" wire:model="service_image">
                         </div>
-
                         <div class="flex flex-col w-full">
                             <label for="" class="font-medium">Establishement Name</label>
                             <select class="border px-2 py-3 rounded-md w-full" wire:model="establishment">
-                                @foreach ($establishments as $establish)
-                                    <option value="{{$establish->id}}">{{$establish->establishment}}</option>
-                                @endforeach
+                                @if(count($providers) > 0)
+                                    <option selected class="text-gray-400">Please select provider</option>
+                                    @foreach($providers as $service_provider)
+                                        <option value="{{ $service_provider->provider->id }}">{{$service_provider->provider->establishment}}</option>
+                                    @endforeach
+                                @else
+                                    <option selected class="text-gray-400">No Provider in the list</option>
+                                @endif
                             </select>
                         </div>
                     </div>

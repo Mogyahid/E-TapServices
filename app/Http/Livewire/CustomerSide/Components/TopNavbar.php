@@ -9,10 +9,13 @@ class TopNavbar extends Component
 {
     public $user_id;
     public $notif_counter;
+    public $unread;
 
     public function mount()
     {
-        $this->user_id = Auth::user()->id;
+        if(Auth::check()){
+            $this->user_id = Auth::user()->id;
+        }
     }
     public function getListeners()
     {
@@ -24,10 +27,11 @@ class TopNavbar extends Component
 
     public function render()
     {
-        $this->notif_counter = Auth::user()->unreadNotifications->count();
-        return view('livewire.customer-side.components.top-navbar',[
-            "unread" => Auth::user()->unreadNotifications,
-        ]);
+        if(Auth::check()){
+            $this->notif_counter = Auth::user()->unreadNotifications->count();
+            $this->unread = Auth::user()->unreadNotifications;
+        }
+        return view('livewire.customer-side.components.top-navbar');
     }
 
     public function requestApproved()

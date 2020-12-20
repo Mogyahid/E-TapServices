@@ -5,6 +5,7 @@ namespace App\Http\Livewire\AdminSide;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Provider;
+use App\Models\User;
 use App\Models\Category;
 use App\Models\ServiceOffer;
 use App\Models\ServiceItem;
@@ -36,7 +37,7 @@ class ServicePage extends Component
     public function render()
     {
         return view('livewire.admin-side.service-page', [
-            "establishments" => Provider::all(),
+            "providers" => User::where("isProviderConfirmed", 1)->get(),
             "categories" => Category::all(),
             'services' => ServiceOffer::all(),
         ]);
@@ -56,7 +57,7 @@ class ServicePage extends Component
     }
 
     public function saveService()
-    {
+    {   
         $saved = ServiceOffer::create([
             'name' => $this->service_name,
             'category_id' => $this->categoryID,

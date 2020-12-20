@@ -19,6 +19,9 @@ class CreateCustomersTable extends Migration
             $table->string("middlename");
             $table->string("gender");
             $table->string("dob");
+            $table->foreign('user_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }

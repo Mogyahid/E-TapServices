@@ -19,4 +19,7 @@ class Category extends Model
     public function service(){
         return $this->hasMany(ServiceOffer::class);
     }
+    public function categoryAdmin(){
+        return $this->belongsTo(User::class, "admin", "id");
+    }
 }

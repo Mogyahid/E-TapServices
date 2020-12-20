@@ -5,6 +5,8 @@
     <!-- Navbar section here -->
     <livewire:customer-side.components.navbar />
     <!-- Carousel Section -->
+    <livewire:customer-side.components.carousel />
+
     <!-- <livewire:customer-side.components.carousel /> -->
 
     <!-- Main content -->

@@ -1,4 +1,4 @@
-@section('title', 'Cleaning Dashboard')
+@section('title', 'Dashboard')
 <div class="bg-white h-screen relative" x-data="{isAccountOpen:false, serviceDialog:@entangle('showServiceDialog')}">
     <div class="bg-white flex justify-between px-15 items-center py-2 shadow-md">
 
@@ -76,7 +76,6 @@
                         <div class="flex flex-col w-full">
                             <label for="" class="font-medium">Choose Category</label>
                             <select name="" id="" class="border px-2 py-3 rounded-md w-full" wire:model="categoryID">
-                                    <option selected>Please select category</option>
                                     @foreach ($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach

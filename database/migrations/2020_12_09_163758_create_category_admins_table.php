@@ -18,6 +18,9 @@ class CreateCategoryAdminsTable extends Migration
             $table->unsignedBigInteger("user_id")->nullable();
             $table->biginteger('category_id')->nullable();
             $table->string('admin_fullname');
+            $table->foreign('user_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }

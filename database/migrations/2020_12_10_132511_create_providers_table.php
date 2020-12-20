@@ -21,6 +21,9 @@ class CreateProvidersTable extends Migration
             $table->string("dob")->nullable();
             $table->string("city")->nullable();
             $table->string("establishment");
+            $table->foreign('user_id')
+            ->references('id')->on('users')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
