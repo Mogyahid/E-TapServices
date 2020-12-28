@@ -14,8 +14,8 @@
                     </li>
                     <li class="hover:text-blue-500 font-medium cursor-pointer"><a href="#">About us</a></li>
                     <li class="hover:text-blue-500 font-medium cursor-pointer"><a href="#">Contact us</a></li>
-                    <li>  <a href="{{ route('provider.register') }}" class="uppercase text-blue-500 border border-blue-500 my-1 py-3 px-2 flex items-center font-medium cursor-pointer rounded hover:bg-blue-500 hover:text-white">APPLY AS PROVIDER</a>
-                    </li>
+                    <!-- <li>  <a href="{{ route('provider.register') }}" class="uppercase text-blue-500 border border-blue-500 my-1 py-3 px-2 flex items-center font-medium cursor-pointer rounded hover:bg-blue-500 hover:text-white">APPLY AS PROVIDER</a>
+                    </li> -->
                 </ul>
         </div>
     </div>

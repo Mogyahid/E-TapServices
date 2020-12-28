@@ -88,7 +88,19 @@ class ProviderRegistration extends Component
             'barangay' => $this->brgy_value,
             'street' => $this->street,
         ]);
-
+        $this->firstname =" ";
+        $this->middlename = " "; 
+        $this->lastname =" ";
+        $this->gender =" "; 
+        $this->dob = " "; 
+        $this->email = " "; 
+        $this->password = " "; 
+        $this->province = " ";
+        $this->city = " ";
+        $this->barangay = " ";
+        $this->street = " "; 
+        $this->contactNo = " "; 
+        $this->passwordConfirmation = "";
         return redirect()->route("registrationFeedback");
     }
     

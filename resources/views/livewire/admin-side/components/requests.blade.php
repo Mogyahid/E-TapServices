@@ -51,7 +51,7 @@
                                         @if($request->category->admin == 1)
                                             <button class="text-white bg-blue-500 px-2 py-2 rounded-md hover:shadow-md flex items-center space-x-2" wire:click="fullApproved({{$request->id}})">
                                                 <span class="material-icons text-sm">thumb_up</span>
-                                                <span>Full</span>
+                                                <span>Full Approve</span>
                                             </button>
                                         @else
                                             <button class="text-white bg-blue-500 px-2 py-2 rounded-md hover:shadow-md flex items-center space-x-2" wire:click="acceptRequest({{$request->id}})">

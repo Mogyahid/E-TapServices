@@ -14,7 +14,7 @@
                 <div class="relative">
                     <img src="{{ asset('/storage/services/' . $img->image->url) }}" class="object-fill w-full h-96 rounded" alt="">
                     <!-- <button><span class="material-icons absolute top-7 right-7 text-white">favorite_border</span></button> -->
-                    <button><span class="material-icons absolute top-7 right-7 text-red-500">favorite</span></button>
+                    <!-- <button><span class="material-icons absolute top-7 right-7 text-red-500">favorite</span></button> -->
                 </div>
             @endforeach
                 <!-- Description -->

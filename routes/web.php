@@ -13,6 +13,7 @@ use App\Http\Livewire\CustomerSide\Index AS CustomerIndex;
 use App\Http\Livewire\CustomerSide\ServiceList;
 use App\Http\Livewire\CustomerSide\ServiceDetail;
 use App\Http\Livewire\CustomerSide\UserProfile;
+use App\Http\Livewire\CustomerSide\Components\Descriptions;
 use App\Http\Livewire\ProviderSide\Index AS ProviderIndex;
 use App\Http\Livewire\AdminSide\Index AS AdminIndex;
 use App\Http\Livewire\CategoryAdmin\Index AS CategoryAdminIndex;
@@ -32,7 +33,8 @@ use Illuminate\Support\Facades\Http;
 |
 */
 
-Route::get('/index', CustomerIndex::class)->name('home');
+Route::get('/', CustomerIndex::class)->name('home');
+Route::get('/provider_description', Descriptions::class)->name('description');
 
 // Customer Side Here...
 Route::middleware(['auth', 'customer'])->group(function () {
@@ -43,13 +45,13 @@ Route::middleware(['auth', 'customer'])->group(function () {
 
 //Provider Page Route
 Route::middleware(['auth', 'provider'])->group(function () {
-    Route::get('/', ProviderIndex::class)->name("provider.dashboard");
+    Route::get('/provider', ProviderIndex::class)->name("provider.dashboard");
 });
 
 
 // Admin Route Pages
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/', AdminIndex::class)->name("admin.dashboard");
+    Route::get('/admin', AdminIndex::class)->name("admin.dashboard");
 });
 
 // Category Admin Route Page

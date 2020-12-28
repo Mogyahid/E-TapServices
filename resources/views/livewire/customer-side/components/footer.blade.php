@@ -8,10 +8,10 @@
                 Vel consequatur odit fuga quam natus, fugiat aut! Exercitationem veritatis iusto iste sed?
             </p>
     
-            <div>
+            <!-- <div> -->
                 <!-- Question mark -->
-                <span class="material-icons text-blue-500">priority_high</span>
-            </div>
+                <!-- <span class="material-icons text-blue-500">priority_high</span>
+            </div> -->
         </div>
     
         <div class="space-y-5">
@@ -44,12 +44,12 @@
             <h1>Get in touch with us</h1>
             <div class="my-4 border rounded-md flex items-center">
                 <input type="email" placeholder="Enter your valid email" class="px-4 py-3 focus:outline-none flex-1 text-black">
-                <button class="material-icons bg-blue-500 px-4 py-3">east</button>
+                <button class="material-icons bg-blue-500 px-4 py-2">east</button>
             </div>
-            <div>
+            <!-- <div>
                 <h1 class="mb-2">Download our mobile app</h1>
                 <a href="#"><img src="https://www.getwellclinic.ca/images/GetWellClinic/Logos/get-it-google-play.png" alt="" class="w-40"></a>
-            </div>
+            </div> -->
 
             <div class="mt-3">
                 <h1>Follow us:</h1>

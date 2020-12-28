@@ -83,7 +83,19 @@ class Register extends Component
         ]);
 
         Auth::login($user, true);
-
+        $this->firstname =" ";
+        $this->middlename = " "; 
+        $this->lastname =" ";
+        $this->gender =" "; 
+        $this->dob = " "; 
+        $this->email = " "; 
+        $this->password = " "; 
+        $this->province = " ";
+        $this->city = " ";
+        $this->barangay = " ";
+        $this->street = " "; 
+        $this->contactNo = " "; 
+        $this->passwordConfirmation = "";
 
         event(new Registered($user));
 
