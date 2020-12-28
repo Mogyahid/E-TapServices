@@ -54,7 +54,7 @@ class Categories extends Component
     {
         // $this->categories = Category::paginate(4);
         return view('livewire.admin-side.components.categories', [
-            'categories' => Category::where('name', 'like', '%'.$this->search.'%')->paginate(8)
+            'categories' => Category::where('name', 'like', '%'.$this->search.'%')->paginate(10)
         ]);
     }
 

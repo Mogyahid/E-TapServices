@@ -10,10 +10,10 @@
         <!-- Buttons -->
         <div>
             <ul class="flex space-x-7">
-                <li class="flex space-x-2 items-center uppercase">
+                <!-- <li class="flex space-x-2 items-center uppercase">
                     <span class="material-icons">dashboard</span>
                     <a href="#">Dashboard</a>
-                </li>
+                </li> -->
                 <li class="flex hover:text-blue-500 space-x-2 items-center uppercase">
                     <span class="material-icons align-middle">autorenew</span> 
                     <a href="#">Requests</a>

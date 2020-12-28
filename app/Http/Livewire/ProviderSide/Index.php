@@ -95,6 +95,8 @@ class Index extends Component
          $this->iteration = rand();
          $this->categoryID = "";
          $this->description = "";
+
+         return redirect()->route("/category");
      }
  
      // To Do

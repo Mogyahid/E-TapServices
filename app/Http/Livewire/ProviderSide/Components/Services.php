@@ -25,14 +25,15 @@ class Services extends Component
     public $showServiceDialog = false;
     public $showEditService = false;
     public $ifForEdit;
+    public $services;
 
     public function render()
     {
+        $this->services =  ServiceOffer::where('provider_id', Auth::user()->id)->get();
         return view('livewire.provider-side.components.services', [
             // "requests" => ClientRequestService::where(),
             "establishments" => Provider::all(),
             "categories" => Category::all(),
-            'services' => ServiceOffer::where('provider_id', Auth::user()->id)->get(),
         ]);
     }
 }

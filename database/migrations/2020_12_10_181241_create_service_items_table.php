@@ -18,9 +18,6 @@ class CreateServiceItemsTable extends Migration
             $table->unsignedBigInteger('service_id');
             $table->string('service_name');
             $table->float('price');
-            $table->foreign('service_id')
-            ->references('id')->on('service_offers')
-            ->onDelete('cascade');
             $table->timestamps();
         });
     }

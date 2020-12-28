@@ -19,9 +19,6 @@ class CreateRequestItemsTable extends Migration
             $table->unsignedBigInteger("request_id");
             $table->string("service_items");
             $table->double("price");
-            $table->foreign('request_id')
-            ->references('id')->on('client_request_services')
-            ->onDelete('cascade');
             $table->timestamps();
         });
     }
