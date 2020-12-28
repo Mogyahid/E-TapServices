@@ -32,7 +32,7 @@ use Illuminate\Support\Facades\Http;
 |
 */
 
-Route::get('/', CustomerIndex::class)->name('home');
+Route::get('/index', CustomerIndex::class)->name('home');
 
 // Customer Side Here...
 Route::middleware(['auth', 'customer'])->group(function () {
@@ -43,18 +43,18 @@ Route::middleware(['auth', 'customer'])->group(function () {
 
 //Provider Page Route
 Route::middleware(['auth', 'provider'])->group(function () {
-    Route::get('/provider', ProviderIndex::class)->name("provider.dashboard");
+    Route::get('/', ProviderIndex::class)->name("provider.dashboard");
 });
 
 
 // Admin Route Pages
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', AdminIndex::class)->name("admin.dashboard");
+    Route::get('/', AdminIndex::class)->name("admin.dashboard");
 });
 
 // Category Admin Route Page
 Route::middleware(['auth', 'category'])->group(function () {
-    Route::get('category', CategoryAdminIndex::class)->name("categoryAdmin.dashboard");
+    Route::get('/category', CategoryAdminIndex::class)->name("categoryAdmin.dashboard");
 });
 
 
