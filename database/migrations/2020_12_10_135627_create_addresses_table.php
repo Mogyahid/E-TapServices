@@ -19,7 +19,7 @@ class CreateAddressesTable extends Migration
             $table->string("province");
             $table->string("city");
             $table->string("barangay");
-            $table->string("street");
+            $table->string("street")->nullable();
             $table->foreign('user_id')
             ->references('id')->on('users')
             ->onDelete('cascade');

@@ -37,6 +37,7 @@
 
         <!-- Custom CSS -->
         <style>
+            tr:nth-child(even) {background-color: #DBDCDD;}
              /* Rules for sizing the icon. */
             .material-icons.md-18 { font-size: 18px; }
             .material-icons.md-24 { font-size: 24px; }
@@ -112,7 +113,7 @@
         <!-- <link rel="styleshee" -->
     </head>
 
-    <body class="font-poppins">
+    <body class="font-poppins" data-turbolinks="false">
         @yield('body')
 
         <div class="se-pre-con"></div>

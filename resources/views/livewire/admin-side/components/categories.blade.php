@@ -37,7 +37,7 @@
                                 @foreach($categories as $category)
                                 <tr class="bg-white hover:bg-gray-100 border-b">
                                     <td class="uppercase font-medium pl-1 py-1">
-                                        <img src="{{ asset('/storage/categories/' . $category->image->url) }}" class="rounded-md w-15 shadow" alt="">
+                                        <img src="{{ asset('/storage/categories/' . $category->image->url) }}" class="rounded-md w-10 shadow" alt="">
                                     </td>
                                     <td class="py-3 uppercase font-medium">{{ $category->name }}</td>
                                     <td class="py-3 uppercase font-medium">{{ $category->no_services }}</td>

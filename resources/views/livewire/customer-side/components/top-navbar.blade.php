@@ -1,8 +1,9 @@
 <div class="border-b border-blue-500">
     <div class="px-15 flex justify-between items-center relative z-50" x-data="{ isAccountOpen : false, isNotificationOpen : false }">
         <div class="text-sm text-gray-500 space-x-2 sm:d-none">
-            <span>Call us now: (+63) 9123456789 |</span>
-            <span>e-tapservices@gmail.com</span>
+            <span>Call us now: (+63) 9067932788</span>
+            <span class="text-blue-500">|</span>
+            <span>mildredaccad@sksu.edu.ph</span>
         </div>
 
             <div class="flex items-center space-x-5">

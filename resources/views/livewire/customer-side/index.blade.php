@@ -40,8 +40,8 @@
             <p class="font-medium">Yes you read it. You can be one of our partner by just applying to this platform as our provider. <br>Please read and understand carefully the instruction before applying!</p>
         </div>
 
-        <div>
-            <a href="{{ route('description') }}" class="bg-blue-500 text-white px-10 py-4 rounded hover:shadow-md text-lg uppercase">
+        <div data-turbolinks="false">
+            <a href="/provider_description" class="bg-blue-500 text-white px-10 py-4 rounded hover:shadow-md text-lg uppercase">
                 Find out more
             </a>
         </div>

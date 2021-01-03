@@ -54,7 +54,7 @@ class Categories extends Component
     {
         // $this->categories = Category::paginate(4);
         return view('livewire.admin-side.components.categories', [
-            'categories' => Category::where('name', 'like', '%'.$this->search.'%')->paginate(10)
+            'categories' => Category::where('name', 'like', '%'.$this->search.'%')->paginate(15)
         ]);
     }
 
@@ -193,7 +193,7 @@ class Categories extends Component
                 'lastname' => '',
                 'email' => $defaultPassword->name."@gmail.com",
                 'contact_no' => $this->contact_number,
-                'password' => Hash::make($defaultPassword->name)
+                'password' => Hash::make("password")
             ]);
             $user_id = $user->id;
             User::where('id', $user_id)->update(["role_id" => 2, 'category_id' => $defaultPassword->id]);

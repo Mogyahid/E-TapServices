@@ -44,7 +44,7 @@
             <h1>Get in touch with us</h1>
             <div class="my-4 border rounded-md flex items-center">
                 <input type="email" placeholder="Enter your valid email" class="px-4 py-3 focus:outline-none flex-1 text-black">
-                <button class="material-icons bg-blue-500 px-4 py-2">east</button>
+                <button class="material-icons bg-blue-500 px-4 py-3 rounded-tr-md rounded-br-md">east</button>
             </div>
             <!-- <div>
                 <h1 class="mb-2">Download our mobile app</h1>
@@ -62,6 +62,6 @@
     </div>
 
     <div class="text-center pb-5">
-        <p class="text-sm">Powered by <a href="#" class="hover:underline">J7 IT Solutions</a>.</p>
+        <p class="text-sm">Powered by <a href="http://www.j7solution.com/" target="_blank" class="hover:underline">J7 IT Solutions</a>.</p>
     </div>
 </div>
