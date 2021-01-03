@@ -18,10 +18,6 @@ class CustomerMiddleWare
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
         if(Auth::check()){
             if (Auth::user()->role_id == 1) { 
                 return redirect()->route('admin.dashboard');
@@ -33,8 +29,9 @@ class CustomerMiddleWare
                 return redirect()->route('provider.dashboard');
             }
             if (Auth::user()->role_id == 4) { # Customer
-                return $next($request);
+                return redirect()->route('home');
             }
         }
+        return $next($request);
     }
 }
