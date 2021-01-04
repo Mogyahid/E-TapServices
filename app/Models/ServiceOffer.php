@@ -18,7 +18,7 @@ class ServiceOffer extends Model
 
     public function provider()
     {
-        return $this->belongsTo(Provider::class, "provider_id", "user_id");
+        return $this->belongsTo(Provider::class, "provider_id", "id");
     }
 
     public function category(){

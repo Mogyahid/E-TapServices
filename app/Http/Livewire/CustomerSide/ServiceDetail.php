@@ -24,9 +24,13 @@ class ServiceDetail extends Component
     public $service_price;
     public $showModal = false;
     public $showRequestSent = false;
+    public $showChangeAddress = false;
     public $address= '';
     public $deliveryDate;
     public $transaction_code;
+    public $province_value, $city_value, $brgy_value, $province = 1265, $city, $barangay, $street;
+    public $cities = [];
+    public $barangays = [];
 
     public function mount(ServiceOffer $reqservice)
     {
@@ -39,6 +43,32 @@ class ServiceDetail extends Component
         // dd(session()->pull("cat_id"));
         // dd($this->category_id);
         // Get the user address
+        
+        if(!empty($this->province)){
+            //Converting the provCode to provDesc
+            $this->province_value = DB::table('refprovince')->select('provDesc')->where('provCode', $this->province)->get();
+            foreach($this->province_value as $prov){
+                $this->province_value = $prov->provDesc;
+            }
+
+            $this->cities = DB::table('refcitymun')->where('provCode', $this->province)->orderBy('citymunDesc', 'Asc')->get();
+
+            //Converting the citymunCode to citymunDesc
+            $this->city_value = DB::table('refcitymun')->select('citymunDesc')->where('citymunCode', $this->city)->get();
+            foreach($this->city_value as $city){
+                $this->city_value = $city->citymunDesc;
+            }
+
+            if(!empty($this->city)){
+                $this->barangays = DB::table('refbrgy')->where('citymunCode', $this->city)->orderBy('brgyDesc', 'Asc')->get();
+
+                //Converting the citymunCode to citymunDesc
+                $this->brgy_value = DB::table('refbrgy')->select('brgyDesc')->where('brgyCode', $this->barangay)->get();
+                foreach($this->brgy_value as $brgy){
+                    $this->brgy_value = $brgy->brgyDesc;
+                }
+            }
+        }
 
         $this->address = Address::where('user_id', Auth::user()->id)->get();
         $this->items = collect();
@@ -48,6 +78,7 @@ class ServiceDetail extends Component
         $this->totalAmount = $this->items->sum('price');
 
         return view('livewire.customer-side.service-detail', [
+            "provinces" => DB::table('refprovince')->orderBy('provDesc', 'Asc')->get(),
             "servicedetails" => ServiceItem::where('service_id', $this->service_id)->get(),
             "getDescriptions" => ServiceItem::where('id', $this->service_id)->get(),
             "offerImages" => ServiceOffer::where('id', $this->service_id)->get(),

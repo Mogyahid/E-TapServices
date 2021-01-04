@@ -16,13 +16,21 @@ class AdminSeederTable extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        $admin = DB::table('users')->insertGetId([
             'firstname' => "Super",
             'lastname' => "Admin",
             'contact_no' => "09357788005",
             'email' => "admin@gmail.com",
             'password' => Hash::make("admin"),
             'role_id' => 1,
+        ]);
+
+        DB::table('addresses')->insert([
+            'user_id' => $admin,	
+            'province' => "SULTAN KUDARAT",
+            'city' => "ISULAN (Capital)",
+            'barangay' => "Kalawag II (Pob.)",
+            'street' => "Montinola Subd., Kalawag II, Isulan, Sultan Kudarat",
         ]);
     }
 }

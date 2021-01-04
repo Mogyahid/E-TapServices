@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Http;
 |
 */
 
-Route::get('/', CustomerIndex::class)->name('home');
+Route::get('/', CustomerIndex::class)->name('home')->middleware('customer');
 Route::get('/provider_description', Descriptions::class)->name('description');
 
 // Customer Side Here...

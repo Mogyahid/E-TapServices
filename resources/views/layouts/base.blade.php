@@ -113,12 +113,12 @@
         <!-- <link rel="styleshee" -->
     </head>
 
-    <body class="font-poppins" data-turbolinks="false">
+    <body class="font-poppins">
         @yield('body')
 
         <div class="se-pre-con"></div>
         @livewireScripts
-        <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false"></script>
+        <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js"></script>
 
         <!-- Include the Quill library -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/js/fontawesome.js"></script>
@@ -190,7 +190,30 @@
             function topFunction() {
                 document.body.scrollTop = 0;
                 document.documentElement.scrollTop = 0;
+
+                // Hiding Scrollbar
+                var style = document.createElement("style");
+                style.innerHTML = `body::-webkit-scrollbar {display: none;}`;
+                document.head.appendChild(style);
+
+                // Get the current page scroll position 
+                scrollTop = window.pageYOffset || document.documentElement.scrollTop; 
+                scrollLeft = window.pageXOffset || document.documentElement.scrollLeft, 
+            
+                // if any scroll is attempted, set this to the previous value 
+                window.onscroll = function() { 
+                    window.scrollTo(scrollLeft, scrollTop); 
+                }; 
             }
+
+            function enableScroll() { 
+                window.onscroll = function() {}; 
+
+                // Hiding Scrollbar
+                var style = document.createElement("style");
+                style.innerHTML = `body::-webkit-scrollbar {display: block;}`;
+                document.head.appendChild(style);
+            } 
         </script>
     </body>
 </html>

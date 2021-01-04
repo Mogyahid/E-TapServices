@@ -58,7 +58,7 @@ class Index extends Component
          $saved = ServiceOffer::create([
              'name' => $this->service_name,
              'category_id' => $this->categoryID,
-             'provider_id' => Auth::user()->id,
+             'provider_id' => Auth::user()->provider->id,
              'service_description' => $this->description
          ]);
  

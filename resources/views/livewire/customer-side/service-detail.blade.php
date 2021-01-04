@@ -1,6 +1,6 @@
 @section('title', 'Service Detail')
 
-<div class="relative" x-data="{requestModal:@entangle('showModal'), requestSent:@entangle('showRequestSent')}">
+<div class="relative" x-data="{requestModal:@entangle('showModal'), requestSent:@entangle('showRequestSent'), changeAddress:@entangle('showChangeAddress')}">
     <livewire:customer-side.components.top-navbar />
 
     <!-- Navbar section here -->
@@ -54,7 +54,7 @@
 
                <div class="mt-5 w-full space-x-3 flex">
                     <button class="bg-blue-500 text-white py-3 px-5 rounded-md font-medium uppercase text-xl hover:shadow" @click="requestModal = !requestModal" onClick="topFunction()">Continue Request</button>
-                    <button class="border border-blue-500 text-blue-500 flex items-center py-3 px-5 rounded-md font-medium uppercase text-xl hover:shadow">
+                    <button class="border border-blue-500 text-blue-500 flex items-center py-3 px-5 rounded-md font-medium uppercase text-xl hover:shadow" @click="changeAddress = !changeAddress" onClick="topFunction()">
                         <span class="material-icons">location_on</span> 
                         <span> Change Delivery Address</span>
                     </button>
@@ -159,7 +159,7 @@
         <div class="bg-white w-2/5 h-3/6 mt-15 rounded-md shadow relative">
             <div class="bg-blue-500 text-white px-5 py-3 uppercase text-xl rounded-tr-md rounded-tl-md flex justify-between">
                 <span>Request Information</span>
-                <span class="material-icons cursor-pointer hover:bg-red-600" @click="requestModal = !requestModal">close</span>    
+                <span class="material-icons cursor-pointer hover:bg-red-600" @click="requestModal = !requestModal" onClick="enableScroll()">close</span>    
             </div>
             <div class="px-5 mt-3">
                 @if(count($items) > 0)
@@ -178,7 +178,7 @@
                                     @endforeach
                             </ul>
                         </div>
-                        <div class="mt-2 font-bold flex items-center font-medium w-full uppercase text-l justify-between bg-blue-300 border py-3 px-2 absolute bottom-3">
+                        <div class="mt-2 font-bold flex items-center w-full uppercase text-l justify-between bg-blue-300 border py-3 px-2 absolute bottom-3">
                                 <span>Total Amount</span>
                                 <span>{{ number_format($totalAmount, 2, '.', ',') }}</span>
                         </div>
@@ -203,6 +203,77 @@
                         </div>
                     </div> 
                 @endif
+            </div>
+        </div>
+    </div>
+
+        <!-- Change Address Modal -->
+        <div class="absolute top-0 w-full z-50 h-screen bg-gray-500 bg-opacity-50 flex justify-center" x-show="changeAddress">
+        <div class="bg-white w-2/6 h-3/6 mt-10 rounded-md shadow relative">
+            <div class="bg-blue-500 text-white px-5 py-3 uppercase text-xl rounded-tr-md rounded-tl-md flex justify-between">
+                <span>Change Delivery Information</span>
+                <span class="material-icons cursor-pointer hover:bg-red-600" @click="changeAddress = !changeAddress" onClick="enableScroll()">close</span>    
+            </div>
+            
+            <div class="mx-7 mt-3">
+                <div class="flex flex-col">
+                    <label for="province" class="font-medium uppercase mb-1">Province</label>
+                    <select name="province" id="province" wire:model="province" class="border py-2 px-2 rounded shadow">
+                        <option selected>Select Province</option>
+                        @foreach ($provinces as $province)
+                            <option value="{{$province->provCode}}">{{$province->provDesc}}</option>
+                        @endforeach
+                            <input type="hidden" value="{{$province_value}}">
+
+                        </select>
+                        @error('province')
+                            <p class="text-md italic text-red-600">{{ $message }}</p>
+                        @enderror
+                </div>
+                <div class="flex flex-col mt-3">
+                    <label for="city" class="font-medium uppercase mb-1">City</label>
+                    <select name="province" id="province" wire:model="city" class="border py-2 px-2 rounded shadow">
+                        @if(count($cities) > 0)
+                            @foreach ($cities as $city)
+                                <option value="{{$city->citymunCode}}">{{$city->citymunDesc}}</option>
+                            @endforeach
+                            <input type="hidden" value="{{$city_value}}">
+                        @else
+                            <option selected>Select your province first</option>
+                        @endif
+                    </select>
+
+                    @error('city')
+                        <p class="text-md italic text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="flex flex-col mt-3">
+                    <label for="barangay" class="font-medium uppercase mb-1">Barangay</label>
+                    <select name="province" id="province" wire:model="barangay" class="border py-2 px-2 rounded shadow">
+                        @if(count($barangays) > 0)
+                            @foreach ($barangays as $brgy)
+                                <option value="{{$brgy->brgyCode}}">{{$brgy->brgyDesc}}</option>
+                            @endforeach
+                            <input type="hidden" value="{{$brgy_value}}">
+
+                        @else
+                            <option selected>Select your city first</option>
+                        @endif
+                        </select>
+
+                        @error('barangay')
+                            <p class="text-md italic text-red-600">{{ $message }}</p>
+                        @enderror
+                    </select>
+                </div>
+                <div class="flex flex-col mt-3">
+                    <label for="barangay" class="font-medium uppercase mb-1">Street Address</label>
+                    <input type="text" class="border py-2 px-3 rounded shadow" wire:model="street" placeholder="Street or Barangay">
+                </div>
+                <div class="flex justify-between mt-3">
+                    <div></div>
+                    <button class="bg-blue-500 text-white py-2 uppercase px-5 rounded hover:shadow text-xl">Save as default</button>
+                </div>
             </div>
         </div>
     </div>

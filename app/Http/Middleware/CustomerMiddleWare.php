@@ -28,9 +28,6 @@ class CustomerMiddleWare
             if (Auth::user()->role_id == 3) {
                 return redirect()->route('provider.dashboard');
             }
-            if (Auth::user()->role_id == 4) { # Customer
-                return redirect()->route('home');
-            }
         }
         return $next($request);
     }
