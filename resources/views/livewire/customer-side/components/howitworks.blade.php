@@ -2,7 +2,7 @@
         <div class="text-center my-7">
             <h1 class="uppercase font-black md:text-5xl text-2xl">How it works?</h1>
             <!-- <hr class="bg-blue-500 w-32 h-1 self-center"> -->            
-            <div class="md:mt-10 mt-5 grid md:grid-cols-3 gap-4 grid-rows-3">
+            <div class="md:mt-10 mt-5 grid md:grid-cols-3 gap-4">
                 <div class="flex flex-col items-center shadow py-3 md:border-l-4 border-blue-500 border-t-4">
                     <img src="{{ asset('images/request.png') }}" alt="request" class="w-80 h-60">
                     <div class="mt-5 px-7">

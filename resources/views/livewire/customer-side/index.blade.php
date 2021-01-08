@@ -18,7 +18,7 @@
         </div>
 
         <!-- Categories -->
-        <div class="grid gap-3 md:px-15 px-7 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:my-4 md:mb-20 mb-7 md:mt-10">
+        <div class="grid gap-3 md:px-15 px-7 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:my-4 md:mb-20 mb-7 md:mt-10">
             <!-- Items -->
             @foreach($categories as $category)
             <div class="border hover:bg-white transform transition hover:-translate-y-2 hover:shadow-md  rounded-md">

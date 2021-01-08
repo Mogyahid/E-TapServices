@@ -8,15 +8,15 @@
 
         <!-- Main content -->
         <div>
-            <div class="text-center py-5 mb-7">
-                <h1 class="uppercase font-black text-5xl leading-14">{{ $category_name }} Services</h1>
+            <div class="text-center py-5 md:mb-7 mb-3">
+                <h1 class="uppercase font-black md:text-5xl text-2xl leading-14">{{ $category_name }} Services</h1>
                 <!-- <hr class="bg-blue-500 w-32 h-1 self-center"> -->
-                <p class="text-gray-500">There are many variations of passages of Lorem Ipsum available, <br>but the majority have suffered alteration in some form by injected humour.</p>
+                <p class="text-gray-500">There are many variations of passages of Lorem Ipsum available</p>
             </div>
 
             <!-- Categories -->
             @if(count($providers) > 0)
-                <div class="grid grid-cols-5 gap-4 px-15 my-5">
+                <div class="grid gap-3 md:px-15 px-7 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 <!-- Items -->  
                     @foreach($providers as $service)
                         @foreach($service->services as $provider_service)
@@ -24,12 +24,12 @@
                             <img src="{{ asset('/storage/services/' . $provider_service->image->url) }}" class="object-cover w-full rounded-tr-md rounded-tl-md" alt="">
                             <div class="py-2">
                                 <div class="text-center">
-                                    <h1 class="font-bold text-xl">{{ $provider_service->name }}</h1>
-                                    <p class="text-gray-700 px-2">{{ $service->establishment }}</p>
+                                    <h1 class="font-bold md:text-xl text-sm">{{ $provider_service->name }}</h1>
+                                    <p class="text-gray-700 px-2 text-xs md:text-md">{{ $service->establishment }}</p>
                                 </div>
 
-                                <div class="text-left px-3 mt-5 mb-3 flex items-center justify-between">
-                                    <div class="leading-3">
+                                <div class="text-left px-3 mt-5 mb-3 md:flex items-center justify-between">
+                                    <div class="md:leading-3">
                                         <!-- Stars -->
                                         <div>
                                             <?php
@@ -39,9 +39,11 @@
                                             ?>
                                         </div>
                                         <!-- Requests made -->
-                                        <p class="text-gray-400 py-1 px-2 text-sm">({{$provider_service->no_requests}}) {{ Str::plural('Request', $provider_service->no_requests) }}</p>
+                                        <p class="text-gray-400 py-1 md:px-2 text-sm">({{$provider_service->no_requests}}) {{ Str::plural('Request', $provider_service->no_requests) }}</p>
                                     </div>,
-                                    <a href="{{ route('requestservice', ['reqservice' => $provider_service->id]) }}" class="bg-blue-500 py-2 hover:shadow px-5 rounded-full text-white">Request Now</a>
+                                    <div class="text-center">
+                                        <a href="{{ route('requestservice', ['reqservice' => $provider_service->id]) }}" class="bg-blue-500 uppercase py-2 hover:shadow md:px-5 px-10 rounded-full w-full text-sm md:text-md text-white">Request Now</a>
+                                    </div>
                                 </div>
                             </div>
                         </div> 

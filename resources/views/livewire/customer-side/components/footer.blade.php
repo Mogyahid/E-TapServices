@@ -1,5 +1,5 @@
 <div class=" bg-footer text-white border-t-2 border-blue-500">
-    <div class="md:px-15 px-7 pt-10 grid md:grid-cols-3 grid-rows-3 gap-4">
+    <div class="md:px-15 px-7 pt-10 grid md:grid-cols-3 gap-4">
         <div class="flex space-x-3">
             <!-- Logo -->
             <img src="{{ asset('logo/final-logo.jpg') }}" alt="Logo" class="md:w-64 md:h-full w-40 h-40">
@@ -43,7 +43,7 @@
         <div>
             <h1>Get in touch with us</h1>
             <div class="my-4 border rounded-md flex items-center">
-                <input type="email" placeholder="Enter your valid email" class="px-4 py-4 focus:outline-none flex-1 text-black">
+                <input type="email" placeholder="Enter your valid email" class="px-4 py-3 focus:outline-none flex-1 text-black">
                 <button class="material-icons bg-blue-500 px-4 py-3 rounded-tr-md rounded-br-md">east</button>
             </div>
             <!-- <div>
@@ -61,7 +61,7 @@
         </div>
     </div>
 
-    <div class="text-center pb-5">
+    <div class="text-center pb-5 pt-7">
         <p class="text-sm">Powered by <a href="http://www.j7solution.com/" target="_blank" class="hover:underline">J7 IT Solutions</a>.</p>
     </div>
 </div>

@@ -30,10 +30,9 @@
         <!-- Quill Rich Text -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.css" rel="stylesheet">
 
-        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
-        <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
-        <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
+        <link rel="stylesheet" href="{{ asset('owlcarousel/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('owlcarousel/owl.theme.default.min.css') }}">
 
         <!-- Custom CSS -->
         <style>
@@ -79,7 +78,7 @@
                 width: 100%;
                 height: 100%;
                 z-index: 9999;
-                background: url(page_loader.gif) center no-repeat #fff;
+                background: url('/page_loader.gif') center no-repeat #fff;
             }
 
             #editor-container {
@@ -106,9 +105,7 @@
             background: #555; 
             }
 
-        </style>
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">        
+        </style>      
 
         <!-- <link rel="styleshee" -->
     </head>
@@ -122,12 +119,10 @@
 
         <!-- Include the Quill library -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/js/fontawesome.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> --}}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
-        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-        <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <script src="owlcarousel/owl.carousel.min.js"></script>
+        <script src="{{ asset('owlcarousel/owl.carousel.min.js')}}"></script>
 
         <!-- Quill -->
         <script> 
@@ -149,7 +144,21 @@
                 dots: true,
                 lazyLoad: true
             });
+
+            var dtToday = new Date();
+            
+            var month = dtToday.getMonth() + 1;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear();
+            if(month < 10)
+                month = '0' + month.toString();
+            if(day < 10)
+                day = '0' + day.toString();
+            
+            var maxDate = year + '-' + month + '-' + day;
+            $('#delDate').attr('min', maxDate);
         });
+
             // Laravel Listener for notification
             window.addEventListener('DOMContentLoaded', function(){
                 Echo.channel(`approved`)
@@ -162,29 +171,6 @@
             $(window).load(function() {
                 // Animate loader off screen
                 $(".se-pre-con").fadeOut("slow");
-            });
-
-
-            //TotalAmount Calculation
-            document.querySelectorAll('.service_name').forEach((element,index) =>{
-                element.addEventListener("change", function(){
-                    document.querySelectorAll('.price')[index].checked = this.checked;
-                });
-            });
-
-            $(function(){
-                var dtToday = new Date();
-                
-                var month = dtToday.getMonth() + 1;
-                var day = dtToday.getDate();
-                var year = dtToday.getFullYear();
-                if(month < 10)
-                    month = '0' + month.toString();
-                if(day < 10)
-                    day = '0' + day.toString();
-                
-                var maxDate = year + '-' + month + '-' + day;
-                $('#deliveryDate').attr('min', maxDate);
             });
 
             function topFunction() {

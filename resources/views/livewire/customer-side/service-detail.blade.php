@@ -7,22 +7,22 @@
     <livewire:customer-side.components.navbar />
 
     <!-- Main content -->
-    <div class="px-15 my-7">
+    <div class="md:px-15 px-7 my-7">
         <div class="flex">
             <div class="flex-1">
             @foreach($offerImages as $img)
                 <div class="relative">
-                    <img src="{{ asset('/storage/services/' . $img->image->url) }}" class="object-fill w-full h-96 rounded" alt="">
+                    <img src="{{ asset('/storage/services/' . $img->image->url) }}" class="object-fill w-full md:h-96 h-36 rounded" alt="">
                     <!-- <button><span class="material-icons absolute top-7 right-7 text-white">favorite_border</span></button> -->
                     <!-- <button><span class="material-icons absolute top-7 right-7 text-red-500">favorite</span></button> -->
                 </div>
             @endforeach
                 <!-- Description -->
-            <div class="mt-7">
+            <div class="md:mt-7 mt-3">
                <div>
-                   <div class="leading-7"> 
-                        <h1 class="text-3xl uppercase font-black">Offered Services</h1>
-                        <span class="text-l text-gray-500">Choose services you want.</span>
+                   <div class="leading-loose"> 
+                        <h1 class="md:text-3xl text-xl uppercase font-black">Offered Services</h1>
+                        <span class="md:text-l text-md text-gray-500">Choose services you want.</span>
                     </div>
                     <form class="mt-5">
                         <ul class="space-y-1">
@@ -30,38 +30,38 @@
                                 <li class="bg-gray-100 py-2 uppercase px-2 text-xl flex justify-between items-center pr-15 cursor-pointer border">
                                     <div>
                                         <input type="checkbox" id="service_name[{{$detail->id}}]" value="{{ $detail->id }}" wire:model="requestItems" class="service_name cursor-pointer">
-                                        <label for="service_name[{{$detail->id}}]" class="font-medium cursor-pointer"> {{ $detail->service_name }}</label><br>
+                                        <label for="service_name[{{$detail->id}}]" class="font-medium cursor-pointer text-sm md:text-2xl"> {{ $detail->service_name }}</label><br>
                                     </div>
-                                    <span class="font-medium">&#8369 {{ number_format($detail->price, 2, '.', ',') }}</span>         
+                                    <span class="font-medium text-sm md:text-2xl">&#8369 {{ number_format($detail->price, 2, '.', ',') }}</span>         
                                 </li>
                             @endforeach
                             <li class="bg-blue-500 py-2 px-2 shadow text-white text-2xl flex justify-between items-center pr-15">
                                 <div>
-                                    <label class="font-medium uppercase">Total Request Amount:</label><br>
+                                    <label class="font-medium uppercase text-sm md:text-2xl">Total Request Amount:</label><br>
                                 </div>
-                                <span class="font-medium text-white" id="visibleTotalAmount">&#8369 {{ number_format($totalAmount, 2, '.', ',') }}</span>
+                                <span class="font-medium text-white text-sm md:text-2xl" id="visibleTotalAmount">&#8369 {{ number_format($totalAmount, 2, '.', ',') }}</span>
                             </li>
                         </ul>
                     </form>
                </div>
 
-               <div>
-                    <h1 class="text-3xl uppercase font-black mt-5">Description</h1>
-                    @foreach($offerImages as $description)
-                         <p class="text-justify mr-10 text-xl text-gray-700">{{ $description->service_description }}</p>
-                    @endforeach
-               </div>
-
-               <div class="mt-5 w-full space-x-3 flex">
-                    <button class="bg-blue-500 text-white py-3 px-5 rounded-md font-medium uppercase text-xl hover:shadow" @click="requestModal = !requestModal" onClick="topFunction()">Continue Request</button>
-                    <button class="border border-blue-500 text-blue-500 flex items-center py-3 px-5 rounded-md font-medium uppercase text-xl hover:shadow" @click="changeAddress = !changeAddress" onClick="topFunction()">
+               <div class="my-5 w-full space-x-3 flex justify-between">
+                    <button class="bg-blue-500 text-white md:py-3 py-2 px-5 rounded-md font-medium uppercase text-xs md:text-xl hover:shadow" @click="requestModal = !requestModal" onClick="topFunction()">Continue Request</button>
+                    <button class="border border-blue-500 text-blue-500 flex items-center md:py-3 py-2 md:px-5 px-3 rounded-md font-medium uppercase text-xs md:text-xl hover:shadow" @click="changeAddress = !changeAddress" onClick="topFunction()">
                         <span class="material-icons">location_on</span> 
                         <span> Change Delivery Address</span>
                     </button>
                 </div>
 
-                <div class="mt-32">
-                    <h1 class="text-3xl uppercase font-black mt-5">Service Rating</h1>
+                <div class="my-5">
+                    <h1 class="md:text-3xl text-xl uppercase font-black">Description</h1>
+                    @foreach($offerImages as $description)
+                         <p class="text-justify md:text-xl text-md text-gray-700">{{ $description->service_description }}</p>
+                    @endforeach
+               </div>
+
+                <div class="md:mt-32 mt-22">
+                    <h1 class="md:text-xl uppercase font-black">Service Rating</h1>
                     <hr>
                     <div class="bg-blue-500">
                         <h1 class="text-white text-xl px-2 py-3"><span class="font-bold">4.5 out of 5</span> - 135 Reviews</h1>
@@ -70,9 +70,9 @@
                     <!-- Rated Customers -->
                     <div class="mt-5 space-y-3">
                         <div class="flex space-x-3">
-                            <img src="https://picsum.photos/70/70" class="object-cover rounded-md" alt="">
+                            <img src="https://picsum.photos/70/70" class="object-cover rounded-full w-17 h-17" alt="">
                             <div>
-                                <h1 class="font-bold text-xl">Jane Doe</h1>
+                                <h1 class="font-bold md:text-xl">Jane Doe</h1>
                                 <!-- Star -->
                                 <div>
                                     <?php
@@ -81,7 +81,7 @@
                                         }
                                     ?>
                                 </div>
-                                <p>Commention</p>
+                                <p class="text-sm">Comments here</p>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
             </div>
 
             <!-- Other services from the same company -->
-            <div class="h-4/6 overflow-y-auto">
+            {{-- <div class="h-4/6 overflow-y-auto">
                 <h1 class="text-xl uppercase font-bold ml-3 text-white px-3 py-3 bg-blue-500">Other Services from the same Establishment</h1>
                 <ul class="h-full ml-3 mt-5 space-y-2">
                     <li class="flex space-x-3 cursor-pointer border-b">
@@ -104,7 +104,7 @@
                         </div>
                     </li>
                 </ul>
-            </div>
+            </div> --}}
         </div>
     </div>
     
@@ -123,7 +123,7 @@
     </div>
     
     <!-- Other Services -->
-    <div class="px-15 mt-24">
+    {{-- <div class="px-15 mt-24">
         <h1 class="text-3xl uppercase font-black">Other Services</h1>
         <div class="mt-2 overflor-y-auto grid grid-cols-9 gap-2 space-x-3 mx-3">
             <a href="#">
@@ -136,30 +136,20 @@
 
 
         </div>
-    </div>
-    <!-- Apply as provider -->
-    <div class="px-15 flex justify-between py-7 my-5 mt-10 items-center">
-        <div>
-            <span class="text-gray-60 text-xl underline">Apply as provider</span> 
-            <h1 class="text-blue-500 font-bold text-4xl">Become our service provider</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam est nihil officiis, id in praesentium.</p>
-        </div>
+    </div> --}}
 
-        <div>
-            <a href="#" class="bg-blue-500 text-white px-5 py-4 rounded hover:shadow-md">
-                Find out more
-            </a>
-        </div>
-    </div>
+    <!-- Apply as provider -->
+    <livewire:customer-side.components.become-provider/>
+
     <!-- Footer -->
     <livewire:customer-side.components.footer />
 
     <!-- Request Modal -->
-    <div class="absolute top-0 w-full z-50 h-screen bg-gray-500 bg-opacity-50 flex justify-center" x-show="requestModal">
-        <div class="bg-white w-2/5 h-3/6 mt-15 rounded-md shadow relative">
-            <div class="bg-blue-500 text-white px-5 py-3 uppercase text-xl rounded-tr-md rounded-tl-md flex justify-between">
+    <div class="absolute top-0 w-full z-50 h-screen bg-gray-500 bg-opacity-50 md:flex md:justify-center" x-show="requestModal">
+        <div class="bg-white md:w-2/5 md:h-3/6 mx-5 h-3/5 mt-15 rounded-md shadow relative">
+            <div class="bg-blue-500 text-white px-5 py-3 uppercase md:text-xl text-l rounded-tr-md rounded-tl-md flex justify-between">
                 <span>Request Information</span>
-                <span class="material-icons cursor-pointer hover:bg-red-600" @click="requestModal = !requestModal" onClick="enableScroll()">close</span>    
+                <button class="material-icons cursor-pointer md:text-xl text-l hover:bg-red-600" @click="requestModal = !requestModal" onclick="enableScroll()">close</button>
             </div>
             <div class="px-5 mt-3">
                 @if(count($items) > 0)
@@ -187,7 +177,10 @@
                         <span class="font-medium uppercase text-xl mb-2">Pick Delivery Date:</span>
                         <div class="flex items-center space-x-3">
                             <div class="w-full">
-                                <input type="date" class="border px-3 py-3 w-full rounded focus:shadow @error('deliveryDate') border-red-600 focus @enderror" id="deliveryDate" wire:model="deliveryDate">
+                                <?php
+                                    $date = date("Y-m-d", strtotime("+1 days"));
+                                ?>
+                                <input type="date" class="border px-3 py-3 w-full rounded focus:shadow @error('deliveryDate') border-red-600 focus @enderror" min="{{$date}}" id="deliveryDate" wire:model="deliveryDate">
                                 @error('deliveryDate')
                                         <p class="text-sm italic text-red-600">{{ $message }}</p>
                                 @enderror
@@ -196,9 +189,9 @@
                         </div>
                   </div>
                 @else
-                    <div class="h-5/6 w-full text-center mb-2 bg-gray-300 flex items-center justify-center border bg-opacity-25 rounded-md">
-                        <div>
-                            <h1 class="text-xl uppercase font-medium">It seems that you forgot to choose service(s)</h1>
+                    <div class="md:h-5/6 h-5/6 w-full text-center mb-2 bg-gray-300 flex items-center justify-center border bg-opacity-25 rounded-md">
+                        <div class="mx-7">
+                            <h1 class="md:text-xl uppercase font-medium">It seems that you forgot to choose service(s)</h1>
                             <span class="text-sm font-mediumd text-gray-500">Choose at least one (1) service before you can continue.</span>
                         </div>
                     </div> 
@@ -209,8 +202,8 @@
 
         <!-- Change Address Modal -->
         <div class="absolute top-0 w-full z-50 h-screen bg-gray-500 bg-opacity-50 flex justify-center" x-show="changeAddress">
-        <div class="bg-white w-2/6 h-3/6 mt-10 rounded-md shadow relative">
-            <div class="bg-blue-500 text-white px-5 py-3 uppercase text-xl rounded-tr-md rounded-tl-md flex justify-between">
+        <div class="bg-white md:w-2/6 md:h-3/6 w-full mt-10 mx-4 h-3/6 rounded-md shadow relative">
+            <div class="bg-blue-500 text-white px-5 py-3 uppercase md:text-xl text-sm rounded-tr-md rounded-tl-md flex justify-between">
                 <span>Change Delivery Information</span>
                 <span class="material-icons cursor-pointer hover:bg-red-600" @click="changeAddress = !changeAddress" onClick="enableScroll()" wire:click="resetControl()">close</span>    
             </div>
