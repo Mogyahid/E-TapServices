@@ -1,7 +1,7 @@
 @section('title', 'Sign in to your account')
 
 <div>
-    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="w-80 mx-auto">
         <a href="{{ route('home') }}">
             <img src="{{ asset("logo/Logo.png") }}" alt="">
             {{-- <x-logo class="w-auto h-16 mx-auto text-indigo-600" /> --}}
@@ -9,7 +9,7 @@
     </div>
 
     <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-md">
-        <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
+        <div class="px-4 py-8 bg-white shadow mx-5 rounded-lg  sm:px-10">
             <!-- <form wire.click.prevent="authenticate"> -->
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 leading-5">
@@ -56,14 +56,14 @@
 
                 <div class="mt-6">
                     <span class="block w-full rounded-md shadow-sm">
-                        <button wire:click.prevent="authenticate" type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-400 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-blue-500 transition duration-150 ease-in-out">
+                        <button wire:click.prevent="authenticate" type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-400 focus:outline-none focus:shadow-outline-indigo active:bg-blue-500 transition duration-150 ease-in-out">
                             Sign in
                         </button>
                     </span>
                 </div>
 
-                <div class="mt-2">
-                    Don't have an account yet? <a href="{{ route("register") }}" class="text-blue-500 hover:text-blue-400">Signup Here</a>
+                <div class="mt-4">
+                    Don't have an account yet? <a href="{{ route("register") }}" class="text-blue-500 hover:text-blue-400">Register</a>
                 </div>
             <!-- </form> -->
         </div>

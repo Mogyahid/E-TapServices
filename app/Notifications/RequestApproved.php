@@ -12,16 +12,18 @@ class RequestApproved extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    private $requestDetails;
+    private $service, $provider, $req_item;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($requestDetails)
+    public function __construct($service, $provider, $req_item)
     {
-        $this->requestDetails = $requestDetails;
+        $this->service = $service;
+        $this->provider = $provider;
+        $this->req_item = $req_item;
     }
 
     /**
@@ -65,7 +67,9 @@ class RequestApproved extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'request_details' => $this->requestDetails,
+            'service' => $this->service,
+            'provider' => $this->provider,
+            'items' => $this->req_item,
         ];
     }
 }

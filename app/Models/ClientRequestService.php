@@ -19,10 +19,12 @@ class ClientRequestService extends Model
     {
         return $this->belongsTo(User::class, "customer_id", "id");
     }
-    // public function provider()
-    // {
-    //     return $this->belongsTo(Provider::class, "provider_id", "id");
-    // }
+
+    public function provider()
+    {
+        return $this->hasOne(Provider::class, "provider_id", "id");
+    }
+
     public function serviceOffer()
     {
         return $this->belongsTo(ServiceOffer::class, "serviceOffer_id", "id"); # The left side is the foreign key

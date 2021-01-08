@@ -1,15 +1,11 @@
 <div class="border-b border-blue-500">
-    <div class="px-15 flex justify-between items-center relative z-50" x-data="{ isAccountOpen : false, isNotificationOpen : false }">
-        <div class="text-sm text-gray-500 space-x-2 sm:d-none">
+    <div class="px-7 md:px-15 justify-between items-center relative z-50 hidden md:flex" x-data="{ isAccountOpen : false, isNotificationOpen : false }">
+        <div class="text-sm text-gray-500 space-x-2 hidden md:block">
             <span>Call us now: (+63) 9067932788</span>
             <span class="text-blue-500">|</span>
             <span>mildredaccad@sksu.edu.ph</span>
         </div>
-
             <div class="flex items-center space-x-5">
-                <!-- Search here -->
-
-                <!-- Notification -->
                 <!-- My account -->
                 @auth
                     <button class="relative" @click="isNotificationOpen = !isNotificationOpen">
@@ -25,9 +21,9 @@
                     </button>
                 @endauth
                 @guest
-                    <div class="flex items-center space-x-2">
-                        <a href="{{ route('login') }}" class="bg-blue-500 uppercase text-white py-3 px-7 flex items-center font-bold cursor-pointer rounded">login to your account</a>
-                        <a href="{{ route('register') }}" class="uppercase text-blue-500 border border-blue-500 my-1 py-3 px-7 flex items-center font-bold cursor-pointer rounded hover:bg-blue-500 hover:text-white">Register</a>
+                    <div class="flex items-center space-x-2 justify-self-end">
+                        <a href="{{ route('login') }}" class="bg-blue-500 uppercase text-white py-3 px-7 items-center font-bold cursor-pointer rounded">login to your account</a>
+                        <a href="{{ route('register') }}" class="uppercase text-blue-500 border border-blue-500 my-1 py-3 px-7 items-center font-bold cursor-pointer rounded hover:bg-blue-500 hover:text-white">Register</a>
                     </div>
                 @endguest
             </div>
@@ -44,10 +40,10 @@
                         @foreach($unread as $notification)
                             <li class="px-3 py-2 hover:bg-gray-200 border-b bg-blue-200 bg-opacity-50">
                                 <a href="#" class="flex items-center space-x-2">
-                                    <img src="https://picsum.photos/40/40" class="rounded-md shadow-md" alt="Notification image">
-                                    <div>
-                                        <h1 class="font-bold text-l">From: {{ $notification->data["request_details"]["totalAmount"]}}</h1>
-                                        <p class="text-sm text-gray-500">Your request </p>
+                                    <img src="{{ asset('images/bell.png') }}" class="rounded-md w-15" alt="Notification image">
+                                    <div class="ml-3">
+                                        <h1 class="font-bold text-md">From: {{ $notification->data["provider"]}}</h1>
+                                        <p class="text-sm text-gray-500">Your request worth &#8369;{{ number_format($notification->data["service"]["totalAmount"], 2) }} has been approved.</p>
                                     </div>
                                 </a>
                             </li>

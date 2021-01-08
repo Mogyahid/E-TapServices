@@ -1,11 +1,11 @@
 <div class=" bg-footer text-white border-t-2 border-blue-500">
-    <div class="px-15 pt-10 grid grid-cols-3 gap-4">
-        <div>
+    <div class="md:px-15 px-7 pt-10 grid md:grid-cols-3 grid-rows-3 gap-4">
+        <div class="flex space-x-3">
             <!-- Logo -->
-            <img src="{{ asset('logo/final-logo.jpg') }}" alt="Logo" class="w-64">
+            <img src="{{ asset('logo/final-logo.jpg') }}" alt="Logo" class="md:w-64 md:h-full w-40 h-40">
             <!-- Company Description -->
-            <p class="my-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                Vel consequatur odit fuga quam natus, fugiat aut! Exercitationem veritatis iusto iste sed?
+            <p class="md:my-3 text-left">
+                E-Tap Description here
             </p>
     
             <!-- <div> -->
@@ -43,7 +43,7 @@
         <div>
             <h1>Get in touch with us</h1>
             <div class="my-4 border rounded-md flex items-center">
-                <input type="email" placeholder="Enter your valid email" class="px-4 py-3 focus:outline-none flex-1 text-black">
+                <input type="email" placeholder="Enter your valid email" class="px-4 py-4 focus:outline-none flex-1 text-black">
                 <button class="material-icons bg-blue-500 px-4 py-3 rounded-tr-md rounded-br-md">east</button>
             </div>
             <!-- <div>

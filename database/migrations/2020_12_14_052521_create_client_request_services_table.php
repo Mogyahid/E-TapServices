@@ -19,6 +19,7 @@ class CreateClientRequestServicesTable extends Migration
             $table->unsignedBigInteger("category_id");
             $table->unsignedBigInteger("customer_id");
             $table->unsignedBigInteger("serviceOffer_id");
+            $table->unsignedBigInteger("provider_id");
             $table->double("totalAmount");
             $table->string("delivery_address");
             $table->datetime("delivery_date");

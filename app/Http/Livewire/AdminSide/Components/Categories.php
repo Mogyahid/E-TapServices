@@ -204,7 +204,7 @@ class Categories extends Component
                 'admin_fullname' => $this->category_fullname
             ]);
             
-            $id = $admin_id->id; # Getting the id of the last category admin
+            $id = $admin_id->user_id; # Getting the id of the last category admin
             Category::where('id', $this->cat_id)->update(['admin' => $id]);
     
             $this->showAssignAdmin = false;

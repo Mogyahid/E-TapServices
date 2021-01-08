@@ -192,7 +192,7 @@
                                         <p class="text-sm italic text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <button class="bg-blue-500 text-white py-4 hover:shadow px-3 w-64 rounded uppercase" wire:click.prevent="sendRequest">Continue</button>      
+                            <button class="bg-blue-500 text-white py-4 hover:shadow px-3 w-64 rounded uppercase" wire:click.prevent="sendRequest()">Continue</button>      
                         </div>
                   </div>
                 @else
@@ -212,7 +212,7 @@
         <div class="bg-white w-2/6 h-3/6 mt-10 rounded-md shadow relative">
             <div class="bg-blue-500 text-white px-5 py-3 uppercase text-xl rounded-tr-md rounded-tl-md flex justify-between">
                 <span>Change Delivery Information</span>
-                <span class="material-icons cursor-pointer hover:bg-red-600" @click="changeAddress = !changeAddress" onClick="enableScroll()">close</span>    
+                <span class="material-icons cursor-pointer hover:bg-red-600" @click="changeAddress = !changeAddress" onClick="enableScroll()" wire:click="resetControl()">close</span>    
             </div>
             
             <div class="mx-7 mt-3">
@@ -272,7 +272,7 @@
                 </div>
                 <div class="flex justify-between mt-3">
                     <div></div>
-                    <button class="bg-blue-500 text-white py-2 uppercase px-5 rounded hover:shadow text-xl">Save as default</button>
+                    <button class="bg-blue-500 text-white py-2 uppercase px-5 rounded hover:shadow text-xl" @click="changeAddress = !changeAddress" onClick="enableScroll()">Save Delivery Address</button>
                 </div>
             </div>
         </div>

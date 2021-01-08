@@ -57,19 +57,7 @@
 
 
     <!-- Apply as provider -->
-    <div class="px-15 flex justify-between py-7 my-5 items-center">
-        <div>
-            <!-- <span class="text-gray-60 text-xl underline">Apply as provider</span> -->
-            <h1 class="text-blue-500 font-bold text-4xl">Become our service provider</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam est nihil officiis, id in praesentium.</p>
-        </div>
-
-        <div>
-            <a href="#" class="bg-blue-500 text-white px-5 py-4 rounded hover:shadow-md">
-                Find out more
-            </a>
-        </div>
-    </div>
+    <livewire:customer-side.components.become-provider/>
     <!-- Footer -->
     <livewire:customer-side.components.footer />
 </div>
